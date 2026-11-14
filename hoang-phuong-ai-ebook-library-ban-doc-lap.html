@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="light dark" />
     <script>try { if (localStorage.getItem("hp-ui-theme") === "dark") document.documentElement.setAttribute("data-theme", "dark"); } catch (e) {}</script>
     <link rel="icon" href="data:," />
-    <title>Hoàng Phương AI Ebook Library — Bản độc lập</title>
+    <title>Nexus Books Library</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
@@ -68,6 +68,7 @@
           linear-gradient(180deg, var(--bg), var(--bg));
         background-color: var(--bg);
         min-height: 100vh;
+        min-height: 100dvh;
       }
       button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]), textarea { min-height: 2.25rem; }
       button { font-family: inherit; cursor: pointer; }
@@ -86,6 +87,9 @@
         border-bottom: 1px solid var(--border);
       }
       .topbar .spacer { flex: 1; }
+      .brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15.5px; letter-spacing: -0.01em; color: var(--text); white-space: nowrap; }
+      .brand .brand-ic { width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(135deg, var(--accent-2), var(--accent)); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+      @media (max-width: 640px) { .brand span { font-size: 14.5px; } }
       @media (max-width: 640px) {
         .topbar { flex-wrap: wrap; padding: 8px 10px; row-gap: 6px; }
         .topbar .spacer { display: none; }
@@ -127,7 +131,7 @@
       .empty .row .gis-signin { justify-content: center; }
 
       /* ---------- Layout / tabs ---------- */
-      .wrap { max-width: 1120px; margin: 0 auto; padding: 18px 16px 110px; }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 18px 16px calc(110px + env(safe-area-inset-bottom, 0px)); }
       @media (min-width: 900px) { .wrap { padding-bottom: 40px; } }
       .tabs { display: none; gap: 4px; margin: 14px auto 0; max-width: 1120px; padding: 0 16px; flex-wrap: wrap; }
       @media (min-width: 900px) { .tabs { display: flex; } }
@@ -138,11 +142,11 @@
       }
       .tab.active { background: var(--surface); color: var(--accent-strong); border-color: var(--border); box-shadow: var(--shadow-sm); }
       .bottomnav {
-        position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
         display: flex; justify-content: space-around;
         background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
         border-top: 1px solid var(--border);
-        padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+        padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
       }
       @media (min-width: 900px) { .bottomnav { display: none; } }
       .bottomnav button {
@@ -174,8 +178,23 @@
         border: 1px solid var(--border); border-radius: 26px; padding: 16px;
         box-shadow: var(--shadow); margin-bottom: 20px;
       }
-      .continue-card .cov { width: 92px; flex: none; }
-      @media (min-width: 700px) { .continue-card .cov { width: 118px; } }
+      .continue-card .cov { width: 104px; flex: none; }
+      @media (min-width: 700px) { .continue-card .cov { width: 136px; } }
+      .continue-card .tag-reading {
+        display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800;
+        letter-spacing: 0.1em; padding: 3px 10px; border-radius: 99px;
+        background: var(--accent); color: var(--on-accent); margin-bottom: 7px;
+      }
+      .explain-box {
+        background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px;
+        padding: 12px 14px; font-size: 13.5px; line-height: 1.6; color: var(--text); margin-top: 14px;
+      }
+      .explain-box b { color: var(--accent-strong); }
+      .app-footer {
+        margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--border);
+        text-align: center; font-size: 12.5px; color: var(--faint); line-height: 1.7;
+      }
+      .app-footer a { font-weight: 700; }
       .continue-card h2 { margin: 0 0 3px; font-size: 18px; }
       .continue-card .meta { color: var(--dim); font-size: 13px; margin-bottom: 10px; }
       .progress { height: 9px; border-radius: 99px; background: var(--border); overflow: hidden; }
@@ -330,7 +349,8 @@
       .player-bar .ttl { font-size: 13.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .player-bar .sub { font-size: 12px; color: var(--dim); }
       .player-ctl { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 9px; }
-      .play-btn { width: 46px; height: 46px; border-radius: 50%; border: 0; background: linear-gradient(135deg, var(--accent-2), var(--accent)); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+      .play-btn { width: 58px; height: 58px; border-radius: 50%; border: 0; background: linear-gradient(135deg, var(--accent-2), var(--accent)); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+      .big-nav { min-height: 56px; padding: 0 18px; font-size: 14.5px; border-radius: 999px; flex: 1 1 0; }
 
       /* ---------- Reader ---------- */
       .reader {
@@ -350,6 +370,12 @@
       .reader .r-btn { width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.12); color: #f7ecd4; display: inline-flex; align-items: center; justify-content: center; flex: none; }
       .reader .r-btn.on { background: var(--accent-2); color: #2b1802; }
       .reader .r-status { font-size: 12.5px; text-align: center; opacity: 0.92; margin-bottom: 7px; }
+      .reader .r-return {
+        position: absolute; left: 50%; transform: translateX(-50%); bottom: 118px; z-index: 6;
+        border: 0; border-radius: 999px; padding: 10px 18px; font-size: 14px; font-weight: 700;
+        background: var(--accent-2); color: #2b1802; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+        display: inline-flex; align-items: center; gap: 7px; animation: r-fade 0.25s ease-out;
+      }
       .reader .r-slider { width: 100%; accent-color: var(--accent-2); min-height: 1.6rem; }
       .reader .r-nav { display: flex; align-items: center; gap: 8px; }
       .reader .stage { position: absolute; inset: 0; overflow: hidden; }
@@ -431,11 +457,12 @@
     <div class="toasts" id="toasts" aria-live="polite"></div>
     <div id="modal-root"></div>
     <div id="dict-root"></div>
-    <input type="file" id="file-input" accept=".epub,.pdf,application/epub+zip,application/pdf" class="hidden" multiple />
+    <input type="file" id="file-input" accept=".epub,.pdf,.txt,.docx,.fb2,.cbz,.mobi,.azw3,.acsm,application/epub+zip,application/pdf,text/plain,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/x-fictionbook+xml,application/vnd.comicbook+zip" class="hidden" multiple />
 
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
@@ -586,17 +613,17 @@
     ];
     function coverGradient(seed) { let s = 0; const t = String(seed || ""); for (let i = 0; i < t.length; i++) s += t.charCodeAt(i); return COVER_GRADIENTS[s % COVER_GRADIENTS.length]; }
 
-    const DEFAULT_READER = { fontSize: 19, fontFamily: "serif", lineHeight: 1.85, effect: "slide", bgId: "kem", customBg: "#fdf6e3", customText: "#333333", useCustom: false, autoDayNight: false, wpm: 0 };
+    const DEFAULT_READER = { fontSize: 19, fontFamily: "serif", lineHeight: 1.85, effect: "slide", bgId: "kem", customBg: "#fdf6e3", customText: "#333333", useCustom: false, autoDayNight: false, wpm: 0, goalMin: 15 };
     function defaultDB() {
       return {
         books: [], positions: {}, bookmarks: {}, notes: {}, highlights: {},
-        episodes: [], playBooks: {}, collections: [], accounts: [],
+        episodes: [], playBooks: {}, collections: [], accounts: [], pendingDeletes: [],
         settings: Object.assign({}, DEFAULT_READER), stats: { readLog: {}, listenMin: 0 },
       };
     }
     let DB = defaultDB();
     const S = {
-      user: null, view: "home", libFilter: "all", libQuery: "", libSort: "recent", libView: "grid", libCollection: "",
+      user: null, view: "home", libFilter: "all", libStatus: "all", libQuery: "", libSort: "recent", libView: "grid", libCollection: "",
       playQuery: "", tokenState: "none", scopeMissing: [], syncing: false, cloudReady: false,
       aiBusy: false, suggestions: null, listenBookId: "", migrateAvailable: false,
     };
@@ -639,14 +666,14 @@
     function startCloudSync() {
       if (!S.user || !fbDb || S.cloudReady) return;
       S.cloudReady = true;
-      const kids = ["books", "positions", "bookmarks", "notes", "highlights", "episodes", "collections", "accounts", "settings", "stats", "playBooks"];
+      const kids = ["books", "positions", "bookmarks", "notes", "highlights", "episodes", "collections", "accounts", "settings", "stats", "playBooks", "pendingDeletes"];
       kids.forEach((k) => {
         const ref = fbDb.ref("users/" + S.user.uid + "/" + k);
         const cb = ref.on("value", (snap) => {
           const v = snap.val();
           if (v == null) return;
           if (k === "books") DB.books = Object.values(v);
-          else if (k === "episodes" || k === "collections" || k === "accounts") DB[k] = Array.isArray(v) ? v : Object.values(v);
+          else if (k === "episodes" || k === "collections" || k === "accounts" || k === "pendingDeletes") DB[k] = Array.isArray(v) ? v : Object.values(v);
           else if (k === "settings") DB.settings = Object.assign({}, DEFAULT_READER, v);
           else DB[k] = v;
           saveLocal(); render();
@@ -665,25 +692,39 @@
       cloudListeners = []; S.cloudReady = false;
     }
 
-    /* ================= Token Google (bọc chung cho Books/Drive) ================= */
+    /* ================= Token Google — TÁCH QUYỀN THEO HÀNH ĐỘNG =================
+       Đồng bộ Play Sách chỉ xin scope Books; Thêm sách / lưu-tải Drive chỉ xin scope Drive.
+       Không bao giờ xin gộp cả hai trong một cửa sổ. Mọi lần xin quyền đều kèm
+       login_hint = email tài khoản Firebase đang đăng nhập. */
     const TOKEN_KEY = "hp-gtoken";
-    let gToken = null, gTokenExp = 0;
-    try { const raw = sessionStorage.getItem(TOKEN_KEY); if (raw) { const p = JSON.parse(raw); gToken = p.t || null; gTokenExp = p.exp || 0; } } catch (e) {}
-    function setGToken(t, expiresInSec) {
+    let gToken = null, gTokenExp = 0, gTokenScopes = [];
+    try { const raw = sessionStorage.getItem(TOKEN_KEY); if (raw) { const p = JSON.parse(raw); gToken = p.t || null; gTokenExp = p.exp || 0; gTokenScopes = Array.isArray(p.scopes) ? p.scopes : []; } } catch (e) {}
+    function setGToken(t, expiresInSec, scopes) {
       gToken = t; gTokenExp = Date.now() + (expiresInSec ? expiresInSec * 1000 : 3600 * 1000);
-      try { sessionStorage.setItem(TOKEN_KEY, JSON.stringify({ t: gToken, exp: gTokenExp })); } catch (e) {}
-      S.tokenState = "ok"; S.scopeMissing = []; render();
+      (scopes || []).forEach((sc) => { if (sc && gTokenScopes.indexOf(sc) < 0) gTokenScopes.push(sc); });
+      try { sessionStorage.setItem(TOKEN_KEY, JSON.stringify({ t: gToken, exp: gTokenExp, scopes: gTokenScopes })); } catch (e) {}
+      S.tokenState = "ok";
+      S.scopeMissing = [BOOKS_SCOPE, DRIVE_SCOPE].filter((sc) => gTokenScopes.indexOf(sc) < 0)
+        .map((sc) => sc === BOOKS_SCOPE ? "quyền đọc Play Sách" : "quyền lưu file trên Drive");
+      render();
+      // Có token mới → xử lý hàng đợi xoá file Drive còn dang dở (mục 8).
+      setTimeout(() => { processPendingDeletes(); }, 800);
     }
     function clearGToken() { gToken = null; gTokenExp = 0; try { sessionStorage.removeItem(TOKEN_KEY); } catch (e) {} if (S.user) S.tokenState = "expired"; }
     const tokenValid = () => !!gToken && Date.now() < gTokenExp - 60000;
+    const hasScope = (sc) => tokenValid() && gTokenScopes.indexOf(sc) >= 0;
+    /* Dòng trấn an hiện TRƯỚC khi bật cửa sổ xin quyền Google (mục 4). */
+    const SCOPE_REASSURE = "App chỉ xin quyền xem danh sách Play Sách và tạo 1 ngăn chứa riêng trên Drive — hoàn toàn không đọc hay đụng tới các file cá nhân khác của bạn.";
+    function reassureScope() { toast(SCOPE_REASSURE, 6500); }
 
-    /* Quyền Sách + Drive xin bằng GIS token client: cửa sổ nhỏ của Google hiện ngay tại trang app, không điều hướng ra ngoài. */
+    /* Xin token bằng GIS token client: cửa sổ nhỏ của Google hiện ngay tại trang app, không điều hướng ra ngoài. */
     function gisRequestToken(scopes, prompt) {
       return new Promise((resolve, reject) => {
         if (!window.google || !google.accounts || !google.accounts.oauth2) return reject(new Error("GIS chưa sẵn sàng"));
         try {
+          const hint = (S.user && S.user.email) || undefined;
           const client = google.accounts.oauth2.initTokenClient({
-            client_id: WEB_OAUTH_CLIENT_ID, scope: scopes,
+            client_id: WEB_OAUTH_CLIENT_ID, scope: scopes, login_hint: hint,
             callback: (resp) => { if (resp && resp.access_token) resolve(resp); else reject(new Error((resp && resp.error) || "Không lấy được token")); },
             error_callback: (err) => {
               const t = err && err.type;
@@ -692,7 +733,7 @@
               else reject(err || new Error("GIS lỗi"));
             },
           });
-          client.requestAccessToken({ prompt: prompt || "" });
+          client.requestAccessToken({ prompt: prompt || "", login_hint: hint });
         } catch (e) { reject(e); }
       });
     }
@@ -702,20 +743,39 @@
       if (m === "POPUP_CLOSED") return "Anh vừa đóng cửa sổ xác nhận của Google nên quyền chưa được cấp — bấm lại và bấm Đồng ý giúp em nhé.";
       return "Chưa lấy được quyền từ Google — anh thử lại giúp em.";
     }
-    let refreshing = null;
-    async function refreshGToken(forcePopup) {
-      if (refreshing) return refreshing;
-      refreshing = (async () => {
-        // 1) Thử lấy lại NGẦM bằng GIS (không bật cửa sổ).
+    /* Xin/chỉ làm mới ĐÚNG một scope: thử GIS ngầm trước, cửa sổ nhỏ sau (khi người dùng chủ động bấm). */
+    const scopeRequests = {};
+    function requestScopes(scopeStr, forcePopup) {
+      if (scopeRequests[scopeStr]) return scopeRequests[scopeStr];
+      const wanted = scopeStr.split(" ").filter(Boolean);
+      const p = (async () => {
         try {
-          const r = await gisRequestToken(BOOKS_SCOPE + " " + DRIVE_SCOPE, "");
-          setGToken(r.access_token, r.expires_in); checkScopes(); return gToken;
+          const r = await gisRequestToken(scopeStr, "");
+          setGToken(r.access_token, r.expires_in, wanted); checkScopes(); return gToken;
         } catch (e) { if (!forcePopup) throw e; /* rơi xuống bước 2 khi người dùng chủ động bấm */ }
-        // 2) Xin quyền qua cửa sổ nhỏ của Google ngay tại app (chỉ khi người dùng vừa bấm nút cần quyền).
-        const r2 = await gisRequestToken(BOOKS_SCOPE + " " + DRIVE_SCOPE, "consent");
-        setGToken(r2.access_token, r2.expires_in); checkScopes(); return gToken;
+        const r2 = await gisRequestToken(scopeStr, "consent");
+        setGToken(r2.access_token, r2.expires_in, wanted); checkScopes(); return gToken;
       })();
-      try { return await refreshing; } finally { refreshing = null; }
+      scopeRequests[scopeStr] = p;
+      const done = () => { delete scopeRequests[scopeStr]; };
+      p.then(done, done);
+      return p;
+    }
+    async function ensureScope(scope, forcePopup) {
+      if (hasScope(scope)) return gToken;
+      return requestScopes(scope, forcePopup);
+    }
+    /* Làm mới các scope còn thiếu — từng scope một, không gộp cửa sổ. */
+    async function refreshGToken(forcePopup) {
+      const want = [BOOKS_SCOPE, DRIVE_SCOPE].filter((sc) => !hasScope(sc));
+      if (!want.length) return gToken;
+      let lastErr = null;
+      for (const sc of want) {
+        try { await requestScopes(sc, forcePopup); }
+        catch (e) { lastErr = e; if (forcePopup) throw e; }
+      }
+      if (!gToken && lastErr) throw lastErr;
+      return gToken;
     }
     async function checkScopes() {
       if (!gToken) return;
@@ -723,7 +783,11 @@
         const res = await fetch("https://oauth2.googleapis.com/tokeninfo?access_token=" + encodeURIComponent(gToken));
         if (!res.ok) return;
         const info = await res.json();
-        const scopes = String(info.scope || "").split(" ");
+        const scopes = String(info.scope || "").split(" ").filter(Boolean);
+        if (scopes.length) {
+          gTokenScopes = scopes;
+          try { sessionStorage.setItem(TOKEN_KEY, JSON.stringify({ t: gToken, exp: gTokenExp, scopes: gTokenScopes })); } catch (e) {}
+        }
         const missing = [];
         if (!scopes.includes(BOOKS_SCOPE)) missing.push("quyền đọc Play Sách");
         if (!scopes.includes(DRIVE_SCOPE)) missing.push("quyền lưu file trên Drive");
@@ -732,7 +796,14 @@
         render();
       } catch (e) { /* bỏ qua: không chặn app */ }
     }
-    /* Mọi lời gọi Books/Drive đều qua hàm này: tự làm mới token khi sắp hết hạn hoặc gặp 401. */
+    function scopeForUrl(url) {
+      if (url.indexOf("books.googleapis.com") >= 0) return BOOKS_SCOPE;
+      if (url.indexOf("drive") >= 0) return DRIVE_SCOPE;
+      return "";
+    }
+    /* Mọi lời gọi Books/Drive đều qua hàm này: trước khi gọi, nếu token sắp hết hạn/hết hạn
+       hoặc thiếu đúng scope của API đó thì tự xin lại (GIS ngầm trước) rồi mới thực thi;
+       gặp 401 cũng tự xin lại token của đúng scope đó và gọi lại — không để lỗi 401 âm thầm. */
     async function gFetch(url, opts, tokenOverride) {
       opts = opts || {};
       const doFetch = (tok) => fetch(url, Object.assign({}, opts, { headers: Object.assign({}, opts.headers || {}, { Authorization: "Bearer " + tok }) }));
@@ -740,11 +811,15 @@
         const r = await doFetch(tokenOverride);
         return r;
       }
-      if (!tokenValid()) await refreshGToken(false);
+      const scope = scopeForUrl(url);
+      if (!tokenValid() || (scope && gTokenScopes.indexOf(scope) < 0)) {
+        if (scope) await requestScopes(scope, false);
+        else if (!tokenValid()) throw new Error("Chưa có phiên Google");
+      }
       let res = await doFetch(gToken);
       if (res.status === 401) {
         clearGToken();
-        await refreshGToken(false);
+        if (scope) await requestScopes(scope, false);
         res = await doFetch(gToken);
         if (res.status === 401) { S.tokenState = "expired"; render(); throw new Error("401"); }
       }
@@ -791,8 +866,21 @@
       return blob;
     }
     async function driveDelete(fileId) {
-      try { await gFetch("https://www.googleapis.com/drive/v3/files/" + encodeURIComponent(fileId), { method: "DELETE" }); } catch (e) {}
-      idb.del("files", "drive:" + fileId);
+      let ok = false;
+      try { const res = await gFetch("https://www.googleapis.com/drive/v3/files/" + encodeURIComponent(fileId), { method: "DELETE" }); ok = res.ok || res.status === 404; } catch (e) {}
+      if (ok) idb.del("files", "drive:" + fileId);
+      return ok;
+    }
+    /* Hàng đợi xoá bù (mục 8): file Drive chưa xoá được lúc token hết hạn sẽ được
+       xoá ở lần có token sau, tránh file mồ côi chiếm dung lượng Drive. */
+    async function processPendingDeletes() {
+      if (!S.user || !tokenValid() || !DB.pendingDeletes || !DB.pendingDeletes.length) return;
+      const rest = [];
+      for (const fid of DB.pendingDeletes.slice()) {
+        const ok = await driveDelete(fid);
+        if (!ok) rest.push(fid);
+      }
+      if (rest.length !== DB.pendingDeletes.length) { DB.pendingDeletes = rest; persist("pendingDeletes"); }
     }
     async function driveList() {
       const out = []; let pageToken = "";
@@ -888,13 +976,14 @@
     async function reauthWithConsent() {
       if (!S.user || !fbAuth) return signInGoogle();
       try {
+        reassureScope();
         await refreshGToken(true);
         await checkScopes();
         toast(S.scopeMissing.length ? "Vẫn còn thiếu quyền — anh kiểm tra lại giúp em." : "Đã cấp đủ quyền rồi ạ.");
       } catch (e) { toast(scopeErrMsg(e), 5600); }
     }
     async function manualResync() {
-      try { await refreshGToken(true); toast("Đã làm mới phiên đồng bộ."); if (S.view === "play") syncPlayMain(); }
+      try { reassureScope(); await refreshGToken(true); toast("Đã làm mới phiên đồng bộ."); if (S.view === "play") syncPlayMain(); }
       catch (e) { toast(scopeErrMsg(e), 5600); }
     }
     async function signOutGoogle() {
@@ -908,7 +997,7 @@
 
     /* ================= Bìa sách ================= */
     function coverHTML(book, tag) {
-      const fmt = book.format === "pdf" ? "PDF" : "EPUB";
+      const fmt = (book.format || "epub").toUpperCase();
       if (book.cover) return '<img src="' + book.cover + '" alt="" loading="lazy" /><span class="fmt">' + fmt + "</span>";
       return '<span class="ph" style="background:' + coverGradient(book.title + book.id) + '"><span class="tag">' + (tag || "Sách của tôi") + '</span><span class="t">' + esc(book.title) + '</span><span class="a">' + esc(book.author || "") + '</span></span><span class="fmt">' + fmt + "</span>";
     }
@@ -940,8 +1029,18 @@
     }
     function bookMetaHTML(book, showMenu) {
       const pct = pctOf(book);
+      const pos = posOf(book.id) || {};
+      const totalPages = pos.totalPages || 0;
+      let sub = "";
+      if (pct >= 100) sub = "Đã đọc xong";
+      else if (pct > 0) {
+        let mins = 0;
+        if (book.format === "pdf" && totalPages) mins = Math.round(Math.max(0, totalPages - (pos.page || 0)) * 0.75);
+        else if (totalPages) mins = Math.round((1 - (pos.percent || 0)) * totalPages * 1024 / (DB.settings.wpm || 820));
+        sub = mins >= 1 ? "Còn khoảng " + mins + " phút đọc • Đã đọc " + pct + "%" : "Đã đọc " + pct + "%";
+      } else if (totalPages) sub = "Khoảng " + totalPages + " trang";
       return '<span class="book-title">' + esc(book.title) + '</span><span class="book-author">' + esc(book.author || "Chưa rõ tác giả") + "</span>" +
-        (pct > 0 ? '<span class="book-sub">' + (pct >= 100 ? "Đã đọc xong" : "Đã đọc " + pct + "%") + "</span>" : "") +
+        (sub ? '<span class="book-sub">' + sub + "</span>" : "") +
         (showMenu ? '<div style="margin-top:5px"><button class="btn small ghost" data-book-menu="' + book.id + '">' + icon("dots", 16) + " Thêm</button></div>" : "");
     }
 
@@ -985,10 +1084,13 @@
       else if (S.view === "settings") body = viewSettings();
       app.innerHTML =
         '<header class="topbar">' +
+        '<div class="brand"><span class="brand-ic">' + icon("books", 17) + '</span><span>Nexus Books Library</span></div>' +
         '<div class="spacer"></div>' + accountHTML() +
+        '<button class="btn small" data-act="theme-toggle" aria-label="Chuyển nhanh giao diện sáng / tối">' + icon(uiTheme() === "dark" ? "sun" : "moon", 15) + (uiTheme() === "dark" ? " Sáng" : " Tối") + "</button>" +
         '<button class="icon-btn" data-nav="settings" aria-label="Cài đặt">' + icon("gear", 19) + "</button></header>" +
         '<nav class="tabs">' + tabs + "</nav>" +
-        '<main class="wrap">' + bannersHTML() + body + "</main>" +
+        '<main class="wrap">' + bannersHTML() + body +
+        '<footer class="app-footer"><div style="font-weight:800;color:var(--dim);font-size:13px">Nexus Books Library</div><div><a href="https://hoangphuongjts.github.io/nexus/privacy.html" target="_blank" rel="noreferrer">Chính sách bảo mật</a></div></footer></main>' +
         '<nav class="bottomnav">' + bottom + "</nav>";
       bindCommon();
       mountGisButtons();
@@ -1004,7 +1106,9 @@
         h += '<div class="banner warn"><div>Phiên đồng bộ Google đã hết hạn nên tạm thời chưa gọi được Play Sách / Drive.</div><button class="btn small primary" data-act="resync">Đồng bộ lại</button></div>';
       }
       if (S.user && S.migrateAvailable) {
-        h += '<div class="banner info"><div>Trên máy này còn sách ở <b>chế độ khách</b>. Anh có muốn chuyển các sách đó lên tài khoản Google này không?</div><button class="btn small primary" data-act="migrate">Chuyển lên tài khoản</button></div>';
+        let guestCount = 0;
+        try { const g = JSON.parse(localStorage.getItem("hp-db-guest") || "null"); if (g && Array.isArray(g.books)) guestCount = g.books.length; } catch (e) {}
+        h += '<div class="banner info"><div>Trên máy này còn <b>' + guestCount + ' sách ở chế độ khách</b> chưa lên tài khoản. Bấm nút bên để đẩy các sách đó lên Drive của tài khoản Google này.</div><button class="btn small primary" data-act="migrate">Đồng bộ ' + guestCount + ' sách trên máy lên tài khoản</button></div>';
       }
       if (!fbAuth) {
         h += '<div class="banner info"><div>Chưa tải được thư viện đăng nhập Google (có thể do mạng) — app vẫn chạy ở <b>chế độ khách</b>, sách lưu trên máy này.</div></div>';
@@ -1016,6 +1120,7 @@
       $$("[data-act]").forEach((el) => el.addEventListener("click", () => {
         const a = el.getAttribute("data-act");
         if (a === "signin") signInGoogle();
+        else if (a === "theme-toggle") { const t = uiTheme() === "dark" ? "light" : "dark"; applyUiTheme(t); render(); toast(t === "dark" ? "Đã chuyển sang giao diện tối." : "Đã chuyển sang giao diện sáng."); }
         else if (a === "signout") signOutGoogle();
         else if (a === "resync") manualResync();
         else if (a === "reauth") reauthWithConsent();
@@ -1036,6 +1141,29 @@
       if (h < 13) return "Chào buổi trưa";
       if (h < 18) return "Chào buổi chiều";
       return "Chào buổi tối";
+    }
+    function localDayKey(d) { d = d || new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+    function todayMinutes() { const log = (DB.stats && DB.stats.readLog) || {}; return Math.round(log[localDayKey()] || 0); }
+    /* Chuỗi ngày đọc liên tục tính tới hôm nay (hôm nay chưa đọc thì tính tới hôm qua). */
+    function streakDays() {
+      const log = (DB.stats && DB.stats.readLog) || {};
+      let streak = 0; const d = new Date();
+      if (!((log[localDayKey(d)] || 0) > 0)) d.setDate(d.getDate() - 1);
+      while ((log[localDayKey(d)] || 0) > 0) { streak++; d.setDate(d.getDate() - 1); }
+      return streak;
+    }
+    /* Ước tính phút còn lại của chương đang đọc — chỉ khi đã có văn bản chương trong bộ nhớ đệm. */
+    function chapterRemainingText(book) {
+      const chapters = textCache[book.id];
+      if (!chapters || !chapters.length) return "";
+      const pos = posOf(book.id) || {};
+      const total = chapters.reduce((s, c) => s + c.text.length, 0) || 1;
+      let read = (pos.percent || 0) * total;
+      for (const c of chapters) {
+        if (read < c.text.length) { const mins = Math.max(1, Math.round((c.text.length - read) / (DB.settings.wpm || 820))); return "Còn ~" + mins + " phút chương này"; }
+        read -= c.text.length;
+      }
+      return "";
     }
     function weekMinutes() {
       const log = (DB.stats && DB.stats.readLog) || {};
@@ -1062,27 +1190,30 @@
         statCard("books", DB.books.length + Object.keys(DB.playBooks).length, "Tổng số sách") +
         statCard("book", inProg.length, "Đang đọc dở") +
         statCard("head", epCount, "Tập đã tạo để nghe") +
-        statCard("clock", weekMinutes(), "Phút đọc tuần này") + "</section>";
-      // Đọc tiếp — điểm nhấn chính
-      const cont = inProg[0] || (DB.books.length ? DB.books.slice().sort((a, b) => ((posOf(b.id) || {}).updatedAt || 0) - ((posOf(a.id) || {}).updatedAt || 0))[0] : null);
+        statCard("clock", weekMinutes(), "Phút đọc tuần này") +
+        statCard("check", streakDays(), "Chuỗi ngày đọc") +
+        statCard("timer", todayMinutes() + "/" + (DB.settings.goalMin || 15), "Mục tiêu hôm nay (phút)") + "</section>";
+      // Thẻ “Đọc tiếp” nổi bật — cuốn đang đọc gần nhất, ngay dưới khối chào/số liệu.
+      const cont = inProg[0] || null;
       if (cont) {
         const pct = pctOf(cont); const pos = posOf(cont.id) || {};
+        const remainTxt = chapterRemainingText(cont);
         h += '<section class="continue-card"><div class="cov"><button class="cover" data-open-book="' + cont.id + '">' + coverHTML(cont) + '</button></div>' +
-          '<div style="flex:1;min-width:0"><div class="provider-tag" style="margin-bottom:7px">' + icon("book", 13) + " Đọc tiếp</div>" +
+          '<div style="flex:1;min-width:0"><span class="tag-reading">' + icon("book", 12) + " ĐANG ĐỌC</span>" +
           '<h2 class="serif">' + esc(cont.title) + "</h2>" +
-          '<div class="meta">' + esc(cont.author || "Chưa rõ tác giả") + (pos.chapterLabel ? " · " + esc(pos.chapterLabel) : "") + "</div>" +
+          '<div class="meta">' + esc(cont.author || "Chưa rõ tác giả") + (pos.chapterLabel ? " · " + esc(pos.chapterLabel) : "") + (remainTxt ? " · " + remainTxt : "") + "</div>" +
           '<div class="progress"><i style="width:' + pct + '%"></i></div>' +
           '<div class="row"><span class="pct">' + pct + '%</span><button class="btn primary" data-open-book="' + cont.id + '">' + icon("book", 16) + " Đọc tiếp</button>" +
           '<button class="btn" data-listen-book="' + cont.id + '">' + icon("head", 16) + " Nghe tiếp</button></div></div></section>";
       }
       h += '<section class="quick">' +
-        '<button class="q-add" data-act="add-book">' + icon("plus", 22) + "<b>Thêm sách</b><span>Tải EPUB / PDF từ máy (tối đa 25 MB)</span></button>" +
+        '<button class="q-add" data-act="add-book">' + icon("plus", 22) + "<b>Thêm sách</b><span>EPUB · PDF · TXT · DOCX · FB2 · CBZ từ máy (tối đa 25 MB)</span></button>" +
         '<button class="q-play" data-act="sync-play">' + icon("sync", 22) + "<b>Đồng bộ Play Sách</b><span>Đưa sách đã tải lên Google Play về app</span></button>" +
         '<button class="q-ai" data-nav="ai">' + icon("spark", 22) + "<b>Tìm sách bằng AI</b><span>Claude · Gemini · ChatGPT · Muse · Dola — tự chọn theo việc</span></button>" +
         '<button class="q-listen" data-nav="listen">' + icon("mic", 22) + "<b>Nghe podcast</b><span>Biến từng chương sách thành audio</span></button></section>";
       if (!DB.books.length && !playList.length) {
         h += '<section class="empty"><div class="ghost-covers"><i style="background:' + COVER_GRADIENTS[0] + '"></i><i style="background:' + COVER_GRADIENTS[3] + ';transform:translateY(-7px)"></i><i style="background:' + COVER_GRADIENTS[5] + '"></i><i style="background:' + COVER_GRADIENTS[7] + ';transform:translateY(-7px)"></i></div>' +
-          "<h3>Thư viện đang trống — mình bắt đầu thôi anh</h3><p>Thêm sách EPUB/PDF từ máy, hoặc đồng bộ sách anh đã tải lên Google Play Sách. Đăng nhập Google để sách tự lưu lên Drive và đồng bộ theo tài khoản.</p>" +
+          "<h3>Thư viện đang trống — mình bắt đầu thôi anh</h3><p>Thêm sách EPUB, PDF, TXT, DOCX, FB2 hoặc truyện tranh CBZ từ máy, hoặc đồng bộ sách anh đã tải lên Google Play Sách. File bị khóa bản quyền của hãng bán sách sẽ được bỏ qua nhẹ nhàng. Đăng nhập Google để sách tự lưu lên Drive và đồng bộ theo tài khoản.</p>" +
           '<div class="row"><button class="btn primary" data-act="add-book">' + icon("plus", 16) + ' Thêm sách ngay</button><button class="btn" data-act="sync-play">' + icon("sync", 16) + " Đồng bộ Play Sách</button>" + (S.user ? "" : gisSigninHTML("Đăng nhập Google")) + "</div></section>";
       }
       if (inProg.length) {
@@ -1116,7 +1247,8 @@
       let list = DB.books.slice();
       if (S.libCollection) list = list.filter((b) => (b.collections || []).includes(S.libCollection));
       if (S.libFilter !== "all") list = list.filter((b) => b.format === S.libFilter);
-      if (S.libQuery) { const q = S.libQuery.toLowerCase(); list = list.filter((b) => (b.title + " " + (b.author || "")).toLowerCase().includes(q)); }
+      if (S.libStatus && S.libStatus !== "all") list = list.filter((b) => { const p = pctOf(b); return S.libStatus === "unread" ? p === 0 : S.libStatus === "done" ? p >= 100 : (p > 0 && p < 100); });
+      if (S.libQuery) { const q = normTitle(S.libQuery); list = list.filter((b) => normTitle(b.title + " " + (b.author || "")).includes(q)); }
       if (S.libSort === "recent") list.sort((a, b) => (b.addedAt || 0) - (a.addedAt || 0));
       if (S.libSort === "title") list.sort((a, b) => a.title.localeCompare(b.title, "vi"));
       if (S.libSort === "author") list.sort((a, b) => (a.author || "").localeCompare(b.author || "", "vi"));
@@ -1126,14 +1258,15 @@
       const list = filteredBooks();
       let h = '<div class="shelf-head" style="margin-top:2px"><h2>Thư viện của anh</h2><span class="count">' + DB.books.length + ' cuốn</span><span style="margin-left:auto"></span><button class="btn primary" data-act="add-book">' + icon("plus", 16) + " Thêm sách</button></div>";
       h += '<div class="toolbar"><div class="search-box">' + icon("search", 17) + '<input id="lib-q" type="text" placeholder="Tìm theo tên sách, tác giả…" value="' + esc(S.libQuery) + '" /></div>' +
-        '<div class="chips"><button class="chip' + (S.libFilter === "all" ? " active" : "") + '" data-filter="all">Tất cả</button><button class="chip' + (S.libFilter === "epub" ? " active" : "") + '" data-filter="epub">EPUB</button><button class="chip' + (S.libFilter === "pdf" ? " active" : "") + '" data-filter="pdf">PDF</button></div>' +
+        '<div class="chips"><button class="chip' + (S.libStatus === "all" ? " active" : "") + '" data-status="all">Tất cả</button><button class="chip' + (S.libStatus === "reading" ? " active" : "") + '" data-status="reading">Đang đọc</button><button class="chip' + (S.libStatus === "unread" ? " active" : "") + '" data-status="unread">Chưa đọc</button><button class="chip' + (S.libStatus === "done" ? " active" : "") + '" data-status="done">Đã xong</button></div>' +
+        '<select class="select" id="lib-format"><option value="all"' + (S.libFilter === "all" ? " selected" : "") + '>Mọi định dạng</option><option value="epub"' + (S.libFilter === "epub" ? " selected" : "") + '>EPUB</option><option value="pdf"' + (S.libFilter === "pdf" ? " selected" : "") + '>PDF</option><option value="txt"' + (S.libFilter === "txt" ? " selected" : "") + '>TXT</option><option value="docx"' + (S.libFilter === "docx" ? " selected" : "") + '>DOCX</option><option value="fb2"' + (S.libFilter === "fb2" ? " selected" : "") + '>FB2</option><option value="cbz"' + (S.libFilter === "cbz" ? " selected" : "") + '>CBZ (truyện tranh)</option><option value="mobi"' + (S.libFilter === "mobi" ? " selected" : "") + '>MOBI / AZW3 (sắp có)</option></select>' +
         '<select class="select" id="lib-collection"><option value="">Mọi bộ sưu tập</option>' + DB.collections.map((c) => '<option value="' + c.id + '"' + (S.libCollection === c.id ? " selected" : "") + ">" + esc(c.name) + "</option>").join("") + "</select>" +
         '<button class="btn small" data-new-collection="1">' + icon("folder", 15) + " Bộ sưu tập mới</button>" +
         '<select class="select" id="lib-sort"><option value="recent"' + (S.libSort === "recent" ? " selected" : "") + '>Mới thêm trước</option><option value="title"' + (S.libSort === "title" ? " selected" : "") + '>Theo tên sách</option><option value="author"' + (S.libSort === "author" ? " selected" : "") + ">Theo tác giả</option></select>" +
         '<button class="btn small" data-view-toggle="1">' + icon(S.libView === "grid" ? "list" : "grid", 15) + (S.libView === "grid" ? " Dạng danh sách" : " Dạng lưới") + "</button>" +
         '<button class="btn small" data-nav="notebook">' + icon("note", 15) + " Sổ tay trích dẫn</button></div>";
       if (!DB.books.length) {
-        h += '<section class="empty"><div class="ghost-covers"><i style="background:' + COVER_GRADIENTS[1] + '"></i><i style="background:' + COVER_GRADIENTS[4] + ';transform:translateY(-7px)"></i><i style="background:' + COVER_GRADIENTS[8] + '"></i></div><h3>Chưa có sách nào trong thư viện</h3><p>Bấm “Thêm sách” và chọn tệp EPUB hoặc PDF từ máy — sách sẽ hiện ở đây để đọc ngay. Sách trên Google Play Sách thì xem ở mục Play Sách.</p><div class="row"><button class="btn primary" data-act="add-book">' + icon("plus", 16) + " Thêm sách</button></div></section>";
+        h += '<section class="empty"><div class="ghost-covers"><i style="background:' + COVER_GRADIENTS[1] + '"></i><i style="background:' + COVER_GRADIENTS[4] + ';transform:translateY(-7px)"></i><i style="background:' + COVER_GRADIENTS[8] + '"></i></div><h3>Chưa có sách nào trong thư viện</h3><p>Bấm “Thêm sách” và chọn tệp EPUB, PDF, TXT, DOCX, FB2 hoặc truyện tranh CBZ từ máy — sách sẽ hiện ở đây để đọc ngay. File bị khóa bản quyền sẽ được bỏ qua nhẹ nhàng. Sách trên Google Play Sách thì xem ở mục Play Sách.</p><div class="row"><button class="btn primary" data-act="add-book">' + icon("plus", 16) + " Thêm sách</button></div></section>";
         return h;
       }
       if (!list.length) { h += '<section class="empty"><h3>Không thấy sách khớp bộ lọc</h3><p>Anh thử bỏ bớt điều kiện tìm kiếm nhé.</p></section>'; return h; }
@@ -1166,7 +1299,7 @@
     let pendingPlayLink = "";
     /* Chuẩn hoá tên sách để khớp giữa Play Sách và thư viện tải lên: bỏ dấu, bỏ đuôi .epub/.pdf, bỏ ký tự lạ. */
     function normTitle(s) {
-      return String(s || "").toLowerCase()
+      return String(s || "").normalize("NFC").toLowerCase()
         .replace(/đ/g, "d")
         .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         .replace(/\.(epub|pdf)$/i, "")
@@ -1223,13 +1356,12 @@
           '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn primary" id="pd-read">' + icon("book", 16) + " Đọc ngay trong app</button>" +
           '<a class="btn" target="_blank" rel="noreferrer" href="' + esc(url) + '">Đọc trên Google Play Sách</a></div>';
       } else {
-        h += '<div class="banner warn" style="margin:14px 0 0"><div>Cuốn này <b>chưa có file trong app</b>. Sách thuộc thư viện Play Sách của anh — Google chỉ cho đọc bằng trình đọc của họ, app không lấy được file sách này về. Muốn đọc ngay trong app: tải file EPUB/PDF của cuốn này rồi dùng nút Thêm sách.</div></div>' +
-          '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><a class="btn primary" target="_blank" rel="noreferrer" href="' + esc(url) + '">' + icon("play", 15) + " Đọc trên Google Play Sách</a></div>" +
+        h += '<div class="explain-box"><b>Vì sao chưa đọc ngay tại đây?</b> Do quy định bảo vệ bản quyền của Google, sách lưu trên Google Play Sách không mở trực tiếp bên trong ứng dụng khác được. File EPUB/PDF không khóa DRM do chính bạn tải về từ Google Play Sách sẽ được lưu riêng tư trong Google Drive cá nhân của bạn và đọc ngay trong app.</div>' +
           '<h3 style="margin:18px 0 6px;font-size:15px">Lấy file sách để đọc trong app</h3>' +
           '<p style="font-size:13.5px;line-height:1.6;color:var(--dim);margin:0 0 10px"><b style="color:var(--text)">Bước 1:</b> mở trang Play Sách của cuốn này. Trong trang của Google, bấm menu ⋮ của cuốn sách → <b style="color:var(--text)">Tải xuống EPUB/PDF</b> (Google cho chủ sở hữu tải lại file gốc của sách tự tải lên).</p>' +
-          '<a class="btn" target="_blank" rel="noreferrer" href="' + esc(url) + '">' + icon("download", 15) + " Mở trang Play Sách của cuốn này</a>" +
-          '<p style="font-size:13.5px;line-height:1.6;color:var(--dim);margin:12px 0 10px"><b style="color:var(--text)">Bước 2:</b> quay lại đây rồi thêm file vừa tải vào app — app tự khớp theo tên sách và ghi nhớ liên kết, từ đó cuốn này có nút “Đọc ngay trong app”.</p>' +
-          '<button class="btn primary" id="pd-add">' + icon("plus", 15) + " Thêm file vừa tải vào app</button>";
+          '<a class="btn" target="_blank" rel="noreferrer" href="' + esc(url) + '">Mở đọc trên Google Play Sách ↗</a>' +
+          '<p style="font-size:13.5px;line-height:1.6;color:var(--dim);margin:12px 0 10px"><b style="color:var(--text)">Bước 2:</b> quay lại đây rồi bấm nút chính bên dưới — app tự khớp theo tên sách và ghi nhớ liên kết, từ đó cuốn này có nút “Đọc ngay trong app”.</p>' +
+          '<button class="btn primary" id="pd-add">' + icon("book", 15) + " Đọc trong app này (Nạp file 1 lần)</button>";
       }
       h += '<button class="menu-item" id="pd-close" style="margin-top:14px">Đóng</button>';
       openModal(h);
@@ -1239,8 +1371,8 @@
     }
     function viewPlay() {
       const all = Object.values(DB.playBooks);
-      const q = S.playQuery.toLowerCase();
-      const list = q ? all.filter((b) => (b.title + " " + (b.author || "")).toLowerCase().includes(q)) : all;
+      const q = normTitle(S.playQuery);
+      const list = q ? all.filter((b) => normTitle(b.title + " " + (b.author || "")).includes(q)) : all;
       list.sort((a, b) => a.title.localeCompare(b.title, "vi"));
       let h = '<div class="shelf-head" style="margin-top:2px"><h2>Play Sách đã tải lên</h2><span class="count">' + all.length + " cuốn</span></div>";
       h += '<p style="color:var(--dim);font-size:13.5px;line-height:1.55;margin:4px 0 0">Sách anh đã tải lên Google Play Sách, gộp từ ' + (DB.accounts.length ? DB.accounts.length + " tài khoản Google" : "tài khoản Google đã đăng nhập") + '. Bấm vào bìa để xem chi tiết ngay trong app — cuốn nào đã có file trong app thì đọc ngay tại đây, chưa có thì app hướng dẫn cách lấy file về.</p>';
@@ -1268,7 +1400,7 @@
       return h;
     }
     /* Lấy TOÀN BỘ sách useruploaded: phân trang 40/cuộn tới khi hết, chốt an toàn 5000. */
-    async function fetchAllUploaded(token) {
+    async function fetchAllUploaded(token, email) {
       const volumes = []; const PAGE = 40; const CAP = 5000; let start = 0;
       for (;;) {
         const url = "https://www.googleapis.com/books/v1/volumes/useruploaded?maxResults=" + PAGE + "&startIndex=" + start + "&projection=FULL";
@@ -1280,11 +1412,13 @@
         const items = data.items || [];
         volumes.push.apply(volumes, items);
         start += items.length;
-        const st = $("#play-status"); if (st) st.textContent = "Đang lấy sách… đã tải " + volumes.length + " cuốn";
+        const st = $("#play-status");
+        if (st) st.innerHTML = "Đang tải tủ sách từ " + esc(email || "tài khoản Google") + "... (Đã tìm thấy " + volumes.length + ' cuốn)<br/><span style="color:var(--faint)">Dữ liệu gốc trên Google của bạn được giữ nguyên 100%</span>';
         if (items.length < PAGE) break;
         if (volumes.length >= CAP) break;
         const total = data.totalItems || 0;
         if (total > 0 && volumes.length >= total) break;
+        await new Promise((r) => setTimeout(r, 150)); // nghỉ ~150ms giữa các trang phân trang
       }
       return volumes;
     }
@@ -1317,13 +1451,14 @@
       if (!S.user) { toast("Anh đăng nhập Google trước đã nhé."); return; }
       if (S.syncing) return;
       S.syncing = true; render();
-      // Điểm cần quyền: xin scope Sách + Drive bằng cửa sổ nhỏ của Google ngay tại app.
-      if (!tokenValid() || S.scopeMissing.length) {
-        try { await refreshGToken(true); }
+      // Điểm cần quyền: Đồng bộ Play Sách CHỈ xin scope Books — không gộp quyền Drive.
+      if (!hasScope(BOOKS_SCOPE)) {
+        reassureScope();
+        try { await requestScopes(BOOKS_SCOPE, true); }
         catch (e) { S.syncing = false; render(); toast(scopeErrMsg(e), 5600); return; }
       }
       try {
-        const vols = await fetchAllUploaded(null);
+        const vols = await fetchAllUploaded(null, S.user.email || "");
         mergePlayVolumes(S.user.email || "", vols);
         if (S.user.email && !DB.accounts.find((a) => a.email === S.user.email)) { DB.accounts.push({ email: S.user.email, main: true }); persist("accounts"); }
         persist("playBooks");
@@ -1339,7 +1474,7 @@
         const ui = await (await fetch("https://www.googleapis.com/oauth2/v3/userinfo", { headers: { Authorization: "Bearer " + tok } })).json();
         const email = ui.email || "Tài khoản Google khác";
         toast("Đã kết nối " + email + " — đang gộp sách…");
-        const vols = await fetchAllUploaded(tok);
+        const vols = await fetchAllUploaded(tok, email);
         mergePlayVolumes(email, vols);
         if (!DB.accounts.find((a) => a.email === email)) DB.accounts.push({ email: email, main: false });
         persist("playBooks"); persist("accounts");
@@ -1412,49 +1547,131 @@
       } catch (e) {}
       return meta;
     }
+    /* ---- Metadata + kiểm chứng nhanh cho các định dạng mới ---- */
+    const FORMAT_MIME = {
+      epub: "application/epub+zip", pdf: "application/pdf", txt: "text/plain",
+      docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      fb2: "application/x-fictionbook+xml", cbz: "application/vnd.comicbook+zip",
+    };
+    function decodeTxtBuffer(buf) {
+      const u8 = new Uint8Array(buf);
+      if (u8.length >= 2 && u8[0] === 0xff && u8[1] === 0xfe) return new TextDecoder("utf-16le").decode(buf);
+      if (u8.length >= 2 && u8[0] === 0xfe && u8[1] === 0xff) return new TextDecoder("utf-16be").decode(buf);
+      const t = new TextDecoder("utf-8").decode(buf);
+      const bad = (t.match(/�/g) || []).length;
+      if (bad > 20 && bad / Math.max(1, t.length) > 0.01) {
+        const t2 = new TextDecoder("utf-16le").decode(buf);
+        if ((t2.match(/�/g) || []).length < bad) return t2;
+      }
+      return t;
+    }
+    function decodeXmlBuffer(buf) {
+      const head = new TextDecoder("ascii").decode(new Uint8Array(buf).slice(0, 300));
+      const m = head.match(/encoding=["']([^"']+)["']/i);
+      const enc = (m && m[1]) || "utf-8";
+      try { return new TextDecoder(enc).decode(buf); } catch (e) { return new TextDecoder("utf-8").decode(buf); }
+    }
+    async function assertZipBuf(buf) {
+      if (!window.JSZip) throw new Error("nozip");
+      return JSZip.loadAsync(buf.slice(0));
+    }
+    async function parseDocxMeta(buf) {
+      const meta = { title: "", author: "", cover: "" };
+      try {
+        const zip = await assertZipBuf(buf);
+        const f = zip.file("docProps/core.xml");
+        if (f) {
+          const xml = await f.async("string");
+          const doc = new DOMParser().parseFromString(xml, "text/xml");
+          const pick = (tag) => { const el = doc.getElementsByTagName("dc:" + tag)[0] || doc.getElementsByTagName(tag)[0]; return el ? (el.textContent || "").trim() : ""; };
+          meta.title = pick("title"); meta.author = pick("creator");
+        }
+      } catch (e) {}
+      return meta;
+    }
+    async function parseFb2Meta(buf) {
+      const text = decodeXmlBuffer(buf);
+      if (text.indexOf("<FictionBook") < 0) throw new Error("notfb2");
+      const doc = new DOMParser().parseFromString(text, "text/xml");
+      if (doc.getElementsByTagName("parsererror").length) throw new Error("badfb2");
+      const meta = { title: "", author: "", cover: "" };
+      const bt = doc.getElementsByTagName("book-title")[0];
+      if (bt) meta.title = (bt.textContent || "").trim();
+      const authorEl = doc.getElementsByTagName("author")[0];
+      if (authorEl) {
+        const fn = authorEl.getElementsByTagName("first-name")[0];
+        const ln = authorEl.getElementsByTagName("last-name")[0];
+        meta.author = ((fn ? fn.textContent : "") + " " + (ln ? ln.textContent : "")).trim();
+      }
+      return meta;
+    }
+    /* Thêm sách theo ĐỢT: file khóa DRM / hỏng / ngoài danh sách bị bỏ qua nhẹ nhàng,
+       không làm hỏng cả đợt. Thêm 1 file → báo 1 câu ngắn; thêm nhiều file → 1 dòng tổng kết. */
     async function addBookFiles(fileList) {
       const files = Array.from(fileList || []);
       if (!files.length) return;
+      const multi = files.length > 1;
+      let added = 0, skipped = 0;
+      const skip = (msg) => { skipped++; if (!multi) toast(msg, 5600); };
       for (const file of files) {
         const lower = file.name.toLowerCase();
-        const format = lower.endsWith(".epub") ? "epub" : lower.endsWith(".pdf") ? "pdf" : "";
-        if (!format) { toast("File “" + file.name + "” không phải EPUB/PDF nên em bỏ qua."); continue; }
-        if (file.size > MAX_FILE_BYTES) { toast("File “" + file.name + "” nặng hơn 25 MB nên chưa thêm được."); continue; }
-        toast("Đang thêm “" + file.name + "”…");
+        const extM = lower.match(/\.([a-z0-9]+)$/);
+        const ext = extM ? extM[1] : "";
+        if (ext === "acsm" || ext === "azw" || ext === "azw4" || ext === "kfx") { skip("“" + file.name + "” bị khóa bản quyền của hãng bán sách nên app bỏ qua nhé."); continue; }
+        if (ext === "mobi" || ext === "azw3") { skip("Định dạng này sẽ được hỗ trợ ở bản sau"); continue; }
+        const format = ["epub", "pdf", "txt", "docx", "fb2", "cbz"].indexOf(ext) >= 0 ? ext : "";
+        if (!format) { skip("“" + file.name + "” không thuộc định dạng sách được hỗ trợ nên app bỏ qua nhé."); continue; }
+        if (file.size > MAX_FILE_BYTES) { skip("File “" + file.name + "” nặng hơn 25 MB nên chưa thêm được."); continue; }
         try {
           const buf = await file.arrayBuffer();
-          const meta = format === "epub" ? await parseEpubMeta(buf, file.name) : await parsePdfMeta(buf);
+          let meta = { title: "", author: "", cover: "" };
+          if (format === "epub") { await assertZipBuf(buf); meta = await parseEpubMeta(buf, file.name); }
+          else if (format === "pdf") {
+            const h = new TextDecoder("ascii").decode(new Uint8Array(buf).slice(0, 5));
+            if (h.indexOf("%PDF") !== 0) throw new Error("notpdf");
+            meta = await parsePdfMeta(buf);
+          }
+          else if (format === "docx") { const zip = await assertZipBuf(buf); if (!zip.file("word/document.xml")) throw new Error("notdocx"); meta = await parseDocxMeta(buf); }
+          else if (format === "fb2") { meta = await parseFb2Meta(buf); }
+          else if (format === "cbz") {
+            const zip = await assertZipBuf(buf);
+            let imgs = 0; zip.forEach((p, en) => { if (!en.dir && /\.(jpe?g|png|gif|webp)$/i.test(p)) imgs++; });
+            if (!imgs) throw new Error("nocbzimg");
+          }
+          else if (format === "txt") { decodeTxtBuffer(buf); }
           const book = {
-            id: uid(), title: meta.title || file.name.replace(/\.(epub|pdf)$/i, ""), author: meta.author || "",
+            id: uid(), title: meta.title || file.name.replace(/\.(epub|pdf|txt|docx|fb2|cbz)$/i, ""), author: meta.author || "",
             format, size: file.size, fileName: file.name, cover: meta.cover || "",
             driveFileId: "", collections: [], addedAt: Date.now(),
           };
-          const blob = new Blob([buf], { type: format === "epub" ? "application/epub+zip" : "application/pdf" });
+          const blob = new Blob([buf], { type: FORMAT_MIME[format] || "application/octet-stream" });
           if (S.user) {
-            // Điểm cần quyền Drive: xin scope bằng cửa sổ nhỏ của Google ngay tại app nếu phiên chưa có quyền.
-            if (!tokenValid() || S.scopeMissing.length) { try { await refreshGToken(true); } catch (e) { /* driveUpload sẽ báo lỗi và app lưu tạm trên máy */ } }
+            // Điểm cần quyền Drive: Thêm sách CHỈ xin scope Drive — không gộp quyền Play Sách.
+            if (!hasScope(DRIVE_SCOPE)) { reassureScope(); try { await requestScopes(DRIVE_SCOPE, true); } catch (e) { /* driveUpload sẽ báo lỗi và app lưu tạm trên máy */ } }
             try {
               book.driveFileId = await driveUpload(file.name, blob, blob.type);
               idb.put("files", "drive:" + book.driveFileId, blob);
             } catch (e) {
               await idb.put("files", "book:" + book.id, blob);
-              toast("Chưa tải được lên Drive (em đã lưu tạm trên máy này): " + ((e && e.message) || e), 5000);
+              if (!multi) toast("Chưa tải được lên Drive (em đã lưu tạm trên máy này): " + ((e && e.message) || e), 5000);
             }
           } else {
             await idb.put("files", "book:" + book.id, blob);
           }
           DB.books.push(book); persist("books");
-          toast("Đã thêm sách “" + book.title + "”.");
-        } catch (e) { toast("Thêm sách “" + file.name + "” chưa thành công: " + ((e && e.message) || e), 5000); }
+          added++;
+          if (!multi) toast("Đã thêm sách “" + book.title + "”.");
+        } catch (e) { skip("“" + file.name + "” bị hỏng hoặc bị khóa nên app bỏ qua nhé."); }
       }
+      if (multi) toast("Đã thêm " + added + " cuốn" + (skipped ? " · Bỏ qua " + skipped + " cuốn bị khóa/không hỗ trợ" : ""), 5600);
       const linkedNow = linkPlayBooks();
       render();
       if (pendingPlayLink) {
         const gid = pendingPlayLink; pendingPlayLink = "";
         const pb = DB.playBooks[gid];
         if (pb && pb.localId) { toast("Đã nối “" + pb.title + "” với file trong app — đọc ngay trong app được rồi anh."); playDetail(gid); }
-        else if (pb) { toast("Đã thêm file, nhưng tên sách chưa khớp với cuốn Play Sách này nên chưa tự nối được — anh thử đặt lại tên file cho giống tên sách giúp em.", 5600); playDetail(gid); }
-      } else if (linkedNow) {
+        else if (pb && added) { toast("Đã thêm file, nhưng tên sách chưa khớp với cuốn Play Sách này nên chưa tự nối được — anh thử đặt lại tên file cho giống tên sách giúp em.", 5600); playDetail(gid); }
+      } else if (linkedNow && added) {
         toast("Đã tự nối " + linkedNow + " cuốn Play Sách với file có sẵn trong app.");
       }
     }
@@ -1480,15 +1697,19 @@
         '<button class="menu-item" data-m="rename">' + icon("note", 18) + " Sửa tên sách</button>" +
         '<button class="menu-item" data-m="collection">' + icon("folder", 18) + " Thêm vào bộ sưu tập</button>" +
         '<button class="menu-item" data-m="ai">' + icon("spark", 18) + " Hỏi AI về cuốn này</button>" +
+        '<button class="menu-item" data-m="ai-summary">✨ Tóm tắt nhanh cuốn này</button>' +
+        '<button class="menu-item" data-m="ai-about">💡 Cuốn này nói về điều gì?</button>' +
         '<button class="menu-item danger" data-m="delete">' + icon("trash", 18) + " Xoá sách</button>" +
         '<button class="menu-item" data-m="close">Đóng</button>');
       $$("#modal-root [data-m]").forEach((el) => el.addEventListener("click", async () => {
         const m = el.getAttribute("data-m"); closeModal();
         if (m === "read") openBook(id);
-        else if (m === "listen") { S.view = "listen"; S.listenBookId = id; render(); }
+        else if (m === "listen") { if (b.format === "cbz") { toast("Truyện tranh chỉ đọc bằng mắt nhé"); return; } S.view = "listen"; S.listenBookId = id; render(); }
         else if (m === "rename") renameBook(id);
         else if (m === "collection") collectionPicker(id);
         else if (m === "ai") { S.view = "ai"; S.aiBookId = id; render(); }
+        else if (m === "ai-summary") runAiQuick(id, "summary");
+        else if (m === "ai-about") runAiQuick(id, "about");
         else if (m === "delete") deleteBook(id);
       }));
     }
@@ -1509,7 +1730,11 @@
         DB.episodes = DB.episodes.filter((e) => e.bookId !== id);
         persist("books"); persist("positions"); persist("bookmarks"); persist("notes"); persist("highlights"); persist("episodes");
         idb.del("files", "book:" + id); idb.del("kv", "texts:" + id);
-        if (b.driveFileId) driveDelete(b.driveFileId);
+        if (b.driveFileId) {
+          // Xoá luôn file trên Drive; chưa xoá được (token hết hạn…) thì vào hàng đợi xoá bù.
+          const okDel = await driveDelete(b.driveFileId);
+          if (!okDel) { DB.pendingDeletes = (DB.pendingDeletes || []).concat(b.driveFileId); persist("pendingDeletes"); }
+        }
         render(); toast("Đã xoá sách.");
       });
     }
@@ -1541,6 +1766,7 @@
       let guest = null;
       try { guest = JSON.parse(localStorage.getItem("hp-db-guest") || "null"); } catch (e) {}
       if (!guest || !Array.isArray(guest.books) || !guest.books.length) { S.migrateAvailable = false; render(); return; }
+      if (S.user && !hasScope(DRIVE_SCOPE)) { reassureScope(); try { await requestScopes(DRIVE_SCOPE, true); } catch (e) { /* vẫn thử tải lên; lỗi thì sách ở lại máy */ } }
       toast("Đang chuyển " + guest.books.length + " sách khách lên tài khoản…");
       let moved = 0;
       for (const gb of guest.books) {
@@ -1560,6 +1786,177 @@
       toast("Đã chuyển " + moved + " sách lên tài khoản của anh.");
     }
 
+    /* ================= Trích xuất chương: TXT / DOCX / FB2 ================= */
+    function isTextFormat(f) { return f === "txt" || f === "docx" || f === "fb2"; }
+    function htmlToPlain(html) { const d = document.createElement("div"); d.innerHTML = html || ""; return (d.textContent || "").replace(/\s+/g, " ").trim(); }
+    function textToHtml(text) {
+      return String(text || "").split(/\n{2,}/).map((p) => p.trim()).filter(Boolean)
+        .map((p) => "<p>" + esc(p).replace(/\n/g, "<br/>") + "</p>").join("");
+    }
+    /* Chia văn bản dài thành các phần đều nhau ~15.000–20.000 ký tự, cắt ở ranh giới đoạn/câu. */
+    function chunkPlainText(text, size) {
+      size = size || 17000;
+      const paras = String(text || "").split(/\n{2,}/);
+      const out = []; let cur = "";
+      const push = () => { if (cur.trim()) out.push(cur.trim()); cur = ""; };
+      paras.forEach((p) => {
+        p = p.trim(); if (!p) return;
+        if (cur && cur.length + p.length + 2 > size) push();
+        while (p.length > size * 1.4) {
+          let cut = p.lastIndexOf(". ", size); if (cut < size * 0.5) cut = p.lastIndexOf(" ", size); if (cut < size * 0.5) cut = size;
+          out.push((cur ? cur + "\n\n" : "") + p.slice(0, cut + 1).trim()); cur = ""; p = p.slice(cut + 1).trim();
+        }
+        cur = cur ? cur + "\n\n" + p : p;
+      });
+      push();
+      return out;
+    }
+    function chaptersFromText(text, fallbackPrefix) {
+      const lines = String(text || "").split(/\r?\n/);
+      const headRe = /^(chương|chapter|hồi|phần|quyển|tập|mục)\b/i;
+      const heads = [];
+      lines.forEach((ln, i) => { const t = ln.trim(); if (t.length >= 3 && t.length <= 90 && headRe.test(t)) heads.push(i); });
+      let chapters = [];
+      if (heads.length >= 2) {
+        const pre = lines.slice(0, heads[0]).join("\n").trim();
+        if (pre.length > 300) chapters.push({ title: "Mở đầu", text: pre, html: textToHtml(pre) });
+        heads.forEach((hi, k) => {
+          const title = lines[hi].trim();
+          const body = lines.slice(hi + 1, k + 1 < heads.length ? heads[k + 1] : lines.length).join("\n").trim();
+          if (body.length < 30) return;
+          if (body.length > 42000) chunkPlainText(body, 19000).forEach((part, j) => chapters.push({ title: title + (j ? " (tiếp " + (j + 1) + ")" : ""), text: part.replace(/\s+/g, " ").trim(), html: textToHtml(part) }));
+          else chapters.push({ title, text: body.replace(/\s+/g, " ").trim(), html: textToHtml(body) });
+        });
+      }
+      if (!chapters.length) {
+        chapters = chunkPlainText(text, 17000).map((part, i) => ({ title: (fallbackPrefix || "Phần") + " " + (i + 1), text: part.replace(/\s+/g, " ").trim(), html: textToHtml(part) }));
+      }
+      return chapters.filter((c) => c.text && c.text.length >= 30);
+    }
+    async function extractTxtChapters(buf) {
+      const text = decodeTxtBuffer(buf).replace(/^\uFEFF/, "");
+      return chaptersFromText(text, "Phần");
+    }
+    function docxFallbackHtml(xmlText) {
+      const doc = new DOMParser().parseFromString(xmlText, "text/xml");
+      const paras = doc.getElementsByTagName("w:p");
+      let html = "";
+      const runText = (r) => {
+        let t = ""; const ts = r.getElementsByTagName("w:t");
+        for (let i = 0; i < ts.length; i++) t += ts[i].textContent;
+        const rpr = r.getElementsByTagName("w:rPr")[0];
+        const isB = rpr && rpr.getElementsByTagName("w:b").length && !/val="false"/.test(new XMLSerializer().serializeToString(rpr.getElementsByTagName("w:b")[0]));
+        const isI = rpr && rpr.getElementsByTagName("w:i").length && !/val="false"/.test(new XMLSerializer().serializeToString(rpr.getElementsByTagName("w:i")[0]));
+        t = esc(t);
+        if (isB) t = "<strong>" + t + "</strong>";
+        if (isI) t = "<em>" + t + "</em>";
+        return t;
+      };
+      for (let i = 0; i < paras.length; i++) {
+        const p = paras[i];
+        let style = "";
+        const ps = p.getElementsByTagName("w:pStyle")[0];
+        if (ps) style = ps.getAttribute("w:val") || "";
+        let inner = ""; const runs = p.getElementsByTagName("w:r");
+        for (let j = 0; j < runs.length; j++) inner += runText(runs[j]);
+        if (!inner.trim()) continue;
+        if (/Heading1|heading 1/i.test(style)) html += "<h1>" + inner + "</h1>";
+        else if (/Heading2|heading 2/i.test(style)) html += "<h2>" + inner + "</h2>";
+        else html += "<p>" + inner + "</p>";
+      }
+      return html;
+    }
+    async function extractDocxChapters(buf) {
+      let html = "";
+      if (window.mammoth) {
+        try { const r = await mammoth.convertToHtml({ arrayBuffer: buf.slice(0) }); html = r.value || ""; } catch (e) { html = ""; }
+      }
+      if (!html) {
+        const zip = await assertZipBuf(buf);
+        const f = zip.file("word/document.xml");
+        if (!f) throw new Error("notdocx");
+        html = docxFallbackHtml(await f.async("string"));
+      }
+      const holder = document.createElement("div"); holder.innerHTML = html;
+      let chapters = []; let cur = { title: "", html: "" };
+      const push = () => {
+        const t = htmlToPlain(cur.html);
+        if (t.length >= 30) chapters.push({ title: cur.title || ("Phần " + (chapters.length + 1)), text: t, html: cur.html });
+        cur = { title: "", html: "" };
+      };
+      Array.from(holder.childNodes).forEach((node) => {
+        const tag = node.nodeType === 1 ? node.tagName : "";
+        if (tag === "H1" || tag === "H2") { push(); cur.title = (node.textContent || "").trim(); }
+        else cur.html += node.nodeType === 1 ? node.outerHTML : esc(node.textContent || "");
+      });
+      push();
+      if (!chapters.length) {
+        const t = htmlToPlain(html);
+        if (t.length >= 30) chapters = chunkPlainText(t, 17000).map((part, i) => ({ title: "Phần " + (i + 1), text: part, html: textToHtml(part) }));
+      }
+      return chapters.map((c) => c.text.length > 42000
+        ? chunkPlainText(c.text, 19000).map((part, j) => ({ title: c.title + (j ? " (tiếp " + (j + 1) + ")" : ""), text: part, html: textToHtml(part) }))
+        : [c]).flat();
+    }
+    function fb2NodeHtml(node) {
+      if (node.nodeType === 3) return esc(node.textContent || "");
+      if (node.nodeType !== 1) return "";
+      const tag = node.tagName.toLowerCase();
+      const kids = () => Array.from(node.childNodes).map(fb2NodeHtml).join("");
+      if (tag === "emphasis") return "<em>" + kids() + "</em>";
+      if (tag === "strong") return "<strong>" + kids() + "</strong>";
+      if (tag === "a") return kids();
+      if (tag === "empty-line") return "<br/>";
+      if (tag === "p" || tag === "v") return "<p>" + kids() + "</p>";
+      if (tag === "subtitle") return '<p style="font-weight:700">' + kids() + "</p>";
+      if (tag === "image") return "";
+      return kids();
+    }
+    async function extractFb2Chapters(buf) {
+      const text = decodeXmlBuffer(buf);
+      if (text.indexOf("<FictionBook") < 0) throw new Error("notfb2");
+      const doc = new DOMParser().parseFromString(text, "text/xml");
+      if (doc.getElementsByTagName("parsererror").length) throw new Error("badfb2");
+      const body = doc.getElementsByTagName("body")[0];
+      if (!body) throw new Error("nofb2body");
+      const sections = [];
+      const collect = (parent, depth) => {
+        Array.from(parent.childNodes).forEach((n) => {
+          if (n.nodeType === 1 && n.tagName.toLowerCase() === "section") { sections.push(n); if (depth < 1) collect(n, depth + 1); }
+        });
+      };
+      collect(body, 0);
+      const topSections = sections.filter((s) => { let p = s.parentNode; while (p && p !== body) { if (p.nodeType === 1 && p.tagName.toLowerCase() === "section") return false; p = p.parentNode; } return true; });
+      const useSections = topSections.length ? topSections : sections;
+      let chapters = [];
+      const sectionToChapter = (sec, idx) => {
+        let title = "";
+        let html = "";
+        Array.from(sec.childNodes).forEach((n) => {
+          if (n.nodeType !== 1) return;
+          const tag = n.tagName.toLowerCase();
+          if (tag === "title" && !title) { title = (n.textContent || "").replace(/\s+/g, " ").trim(); return; }
+          if (tag === "section") { html += Array.from(n.childNodes).map(fb2NodeHtml).join(""); return; }
+          html += fb2NodeHtml(n);
+        });
+        const t = htmlToPlain(html);
+        if (t.length >= 30) chapters.push({ title: title || ("Phần " + (idx + 1)), text: t, html });
+      };
+      if (useSections.length) useSections.forEach(sectionToChapter);
+      else {
+        const html = Array.from(body.childNodes).map(fb2NodeHtml).join("");
+        const t = htmlToPlain(html);
+        if (t.length >= 30) chapters = chunkPlainText(t, 17000).map((part, i) => ({ title: "Phần " + (i + 1), text: part, html: textToHtml(part) }));
+      }
+      return chapters;
+    }
+    async function extractTextChapters(book, buf) {
+      if (book.format === "txt") return extractTxtChapters(buf);
+      if (book.format === "docx") return extractDocxChapters(buf);
+      if (book.format === "fb2") return extractFb2Chapters(buf);
+      return [];
+    }
+
     /* ================= Trích xuất văn bản theo chương ================= */
     const textCache = {};
     async function extractChapters(book) {
@@ -1569,7 +1966,11 @@
       const blob = await getBookBlob(book);
       const buf = await blob.arrayBuffer();
       let chapters = [];
-      if (book.format === "epub") {
+      if (book.format === "cbz") {
+        throw new Error("Truyện tranh chỉ đọc bằng mắt nhé");
+      } else if (isTextFormat(book.format)) {
+        chapters = await extractTextChapters(book, buf);
+      } else if (book.format === "epub") {
         if (!window.ePub) throw new Error("Chưa tải được thư viện đọc EPUB — anh kiểm tra mạng rồi mở lại.");
         const eb = ePub(buf.slice(0));
         await eb.ready;
@@ -1589,7 +1990,7 @@
           } catch (e) { /* bỏ qua mục lỗi */ }
         }
         eb.destroy();
-      } else {
+      } else if (book.format === "pdf") {
         if (!window.pdfjsLib) throw new Error("Chưa tải được thư viện đọc PDF — anh kiểm tra mạng rồi mở lại.");
         pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
         const pdf = await pdfjsLib.getDocument({ data: buf.slice(0) }).promise;
@@ -1606,7 +2007,7 @@
       }
       if (!chapters.length) throw new Error("Chưa trích được chữ từ sách này (có thể là sách scan ảnh).");
       textCache[book.id] = chapters;
-      idb.put("kv", "texts:" + book.id, chapters.map((c) => ({ title: c.title, text: c.text, spineIndex: c.spineIndex, pageStart: c.pageStart })));
+      idb.put("kv", "texts:" + book.id, chapters.map((c) => ({ title: c.title, text: c.text, html: c.html, spineIndex: c.spineIndex, pageStart: c.pageStart })));
       return chapters;
     }
 
@@ -1616,7 +2017,9 @@
       pdfPage: 1, pdfTotal: 0, uiVisible: true, settingsOpen: false, toc: [],
       curCfi: "", curPercent: 0, curChapterLabel: "", curChapterIdx: 0, pageInChapter: "", totalPages: 0,
       lastTick: 0, lastPercent: 0, tickTimer: null, selection: null, pdfScrollMode: false,
+      textChapters: null, textTotal: 0, textFrac: 0, cbzUrls: null, cbzPage: 1, cbzTotal: 0,
     };
+    function isTextMode() { return isTextFormat(R.mode); }
     function readerBg() {
       const st = DB.settings;
       if (st.autoDayNight) {
@@ -1640,7 +2043,9 @@
         const blob = await getBookBlob(book);
         const buf = await blob.arrayBuffer();
         if (book.format === "epub") await openEpub(buf);
-        else await openPdf(buf);
+        else if (book.format === "pdf") await openPdf(buf);
+        else if (book.format === "cbz") await openCbz(buf);
+        else await openTextBook(buf);
         const loading = $("#r-loading"); if (loading) loading.remove();
         startReadTracking();
       } catch (e) {
@@ -1662,6 +2067,7 @@
         '<div class="tap-zone" id="r-tap-r" style="right:0;width:26%"></div>' +
         '<div class="r-top"><button class="r-btn" id="r-close" aria-label="Đóng sách">' + icon("left", 19) + '</button><div class="r-title">' + esc(R.book.title) + '</div>' +
         '<button class="r-btn" id="r-listen" aria-label="Nghe từ vị trí này">' + icon("head", 18) + '</button>' +
+        '<button class="r-btn" id="r-digest" aria-label="Tinh gọn chương này" title="⚡ Tinh gọn chương này">' + icon("spark", 18) + '</button>' +
         '<button class="r-btn" id="r-bookmark" aria-label="Đánh dấu trang">' + icon("bookmark", 18) + '</button>' +
         '<button class="r-btn" id="r-toc" aria-label="Mục lục">' + icon("list", 18) + '</button>' +
         '<button class="r-btn" id="r-settings" aria-label="Cài đặt đọc">' + icon("type", 18) + "</button></div>" +
@@ -1682,7 +2088,8 @@
       $("#r-toc").addEventListener("click", () => openTocSheet());
       $("#r-bookmark").addEventListener("click", () => toggleBookmark());
       $("#r-listen").addEventListener("click", () => listenFromReader());
-      $("#r-slider").addEventListener("change", (e) => sliderJump(Number(e.target.value) / 1000));
+      $("#r-digest").addEventListener("click", () => digestChapter());
+      $("#r-slider").addEventListener("change", (e) => { noteReturnPoint(); sliderJump(Number(e.target.value) / 1000); });
       document.addEventListener("keydown", readerKeys);
     }
     function readerKeys(e) {
@@ -1698,10 +2105,13 @@
     function setReaderUI(v) { R.uiVisible = v; const r = $("#reader"); if (r) r.classList.toggle("ui-hidden", !v); }
     function closeReader(silent) {
       if (!R.open && !silent) return;
+      stopDigestSpeech();
       stopReadTracking(); savePosition();
       if (R.rendition) { try { R.rendition.destroy(); } catch (e) {} R.rendition = null; }
       if (R.eBook) { try { R.eBook.destroy(); } catch (e) {} R.eBook = null; }
       if (R.pdfDoc) { try { R.pdfDoc.destroy(); } catch (e) {} R.pdfDoc = null; }
+      if (R.cbzUrls) { R.cbzUrls.forEach((u) => { try { URL.revokeObjectURL(u); } catch (e) {} }); R.cbzUrls = null; }
+      R.textChapters = null; R.cbzTotal = 0;
       const root = $("#reader-root"); if (root) root.remove();
       document.removeEventListener("keydown", readerKeys);
       document.body.style.overflow = "";
@@ -1799,18 +2209,26 @@
       const el = $("#r-status"); if (!el || !R.book) return;
       let s = "";
       if (R.mode === "epub") {
-        const pageTxt = R.totalPages ? " · Trang " + Math.min(R.totalPages, Math.max(1, Math.round(R.curPercent * R.totalPages))) + "/" + R.totalPages : "";
-        s = esc(R.curChapterLabel || "") + (R.pageInChapter ? " · " + esc(R.pageInChapter) : "") + pageTxt + " · " + Math.round(R.curPercent * 100) + "%";
+        const pct = Math.round(R.curPercent * 100);
+        const pageTxt = R.totalPages ? "Trang " + Math.min(R.totalPages, Math.max(1, Math.round(R.curPercent * R.totalPages))) + " / " + R.totalPages + " · " + pct + "%" : pct + "%";
+        s = pageTxt + (R.curChapterLabel ? " · " + esc(R.curChapterLabel) : "") + (R.pageInChapter ? " · " + esc(R.pageInChapter) : "");
         const eta = etaText();
         if (eta) s += " · " + eta;
+      } else if (isTextMode()) {
+        const total = R.textChapters ? R.textChapters.length : 0;
+        s = "Chương " + (R.curChapterIdx + 1) + (total ? "/" + total : "") + " · " + Math.round(R.curPercent * 100) + "%" + (R.curChapterLabel ? " · " + esc(R.curChapterLabel) : "");
+        const eta = etaText();
+        if (eta) s += " · " + eta;
+      } else if (R.mode === "cbz") {
+        s = "Trang " + R.cbzPage + " / " + R.cbzTotal + " · " + Math.round(R.curPercent * 100) + "%";
       } else {
-        s = "Trang " + R.pdfPage + "/" + R.pdfTotal + " · " + Math.round((R.pdfTotal ? R.pdfPage / R.pdfTotal : 0) * 100) + "%";
+        s = "Trang " + R.pdfPage + " / " + R.pdfTotal + " · " + Math.round((R.pdfTotal ? R.pdfPage / R.pdfTotal : 0) * 100) + "%";
         const eta = etaText();
         if (eta) s += " · " + eta;
       }
       el.textContent = s.replace(/&[^;]+;/g, (m) => { const d = document.createElement("span"); d.innerHTML = m; return d.textContent; });
       const sl = $("#r-slider");
-      if (sl && document.activeElement !== sl) sl.value = String(Math.round((R.mode === "epub" ? R.curPercent : (R.pdfTotal ? R.pdfPage / R.pdfTotal : 0)) * 1000));
+      if (sl && document.activeElement !== sl) sl.value = String(Math.round((R.curPercent || 0) * 1000));
       const bm = $("#r-bookmark");
       if (bm) bm.classList.toggle("on", isBookmarkedHere());
     }
@@ -1826,6 +2244,11 @@
         if (disp) { const remainCh = (Number(disp[2]) - Number(disp[1])) * 1024 / wpm; if (remainCh >= 1) parts.push("~" + Math.round(remainCh) + " phút hết chương"); }
         if (remainBook >= 1) parts.push("~" + (remainBook >= 90 ? (remainBook / 60).toFixed(1).replace(".0", "") + " giờ" : Math.round(remainBook) + " phút") + " hết sách");
         return parts.join(" · ");
+      }
+      if (isTextMode() && R.textTotal) {
+        const remain = Math.max(0, (1 - R.curPercent) * R.textTotal) / wpm;
+        if (remain >= 1) return "~" + (remain >= 90 ? (remain / 60).toFixed(1).replace(".0", "") + " giờ" : Math.round(remain) + " phút") + " hết sách";
+        return "";
       }
       if (R.mode === "pdf" && R.pdfTotal) {
         const remainPages = R.pdfTotal - R.pdfPage;
@@ -1885,14 +2308,121 @@
       R.curPercent = R.pdfPage / R.pdfTotal;
       updateReaderStatus(); savePositionDebounced();
     }
+    /* ---- Sách chữ TXT / DOCX / FB2: đọc theo chương, cuộn dọc trong chương ---- */
+    async function openTextBook(buf) {
+      const chapters = await extractChapters(R.book);
+      R.textChapters = chapters;
+      R.textTotal = chapters.reduce((s, c) => s + c.text.length, 0) || 1;
+      R.totalPages = chapters.length;
+      const pos = posOf(R.book.id);
+      let idx = 0;
+      if (pos && typeof pos.chapterIdx === "number" && pos.chapterIdx < chapters.length) idx = pos.chapterIdx;
+      else if (pos && typeof pos.percent === "number") idx = Math.min(chapters.length - 1, Math.floor(pos.percent * chapters.length));
+      renderTextChapter(idx, pos && typeof pos.chapterFrac === "number" ? pos.chapterFrac : 0);
+    }
+    function applyTextTheme() {
+      const body = $("#r-text-body");
+      const st = DB.settings;
+      if (body) {
+        body.style.fontSize = st.fontSize + "px";
+        body.style.lineHeight = String(st.lineHeight);
+        body.style.fontFamily = st.fontFamily === "serif" ? "'Noto Serif', Georgia, serif" : "'Be Vietnam Pro', system-ui, sans-serif";
+      }
+      const r = $("#reader"); if (r) r.setAttribute("style", bgStyle(readerBg()));
+    }
+    function applyAnyTheme() {
+      if (R.mode === "epub") applyEpubTheme();
+      else if (isTextMode()) applyTextTheme();
+    }
+    function renderTextChapter(idx, frac) {
+      if (!R.textChapters || !R.textChapters.length) return;
+      idx = Math.min(R.textChapters.length - 1, Math.max(0, idx));
+      const ch = R.textChapters[idx];
+      R.curChapterIdx = idx; R.curChapterLabel = ch.title; R.textFrac = frac || 0;
+      const st = DB.settings;
+      const stage = $("#r-stage"); if (!stage) return;
+      stage.innerHTML = '<div id="r-text-scroll" style="position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch">' +
+        '<div id="r-text-body" style="max-width:760px;margin:0 auto;padding:82px 22px 128px;font-size:' + st.fontSize + 'px;line-height:' + st.lineHeight + ";font-family:" + (st.fontFamily === "serif" ? "'Noto Serif', Georgia, serif" : "'Be Vietnam Pro', system-ui, sans-serif") + '">' +
+        '<h2 style="font-size:1.25em;line-height:1.4;margin:0 0 0.9em">' + esc(ch.title) + "</h2>" +
+        '<div class="r-text-html">' + (ch.html || textToHtml(ch.text)) + "</div></div></div>";
+      // Vùng chạm của khung ngoài nhường cho cuộn/chọn chữ trong chế độ văn bản; chạm mép vẫn chuyển trang.
+      ["r-tap-l", "r-tap-c", "r-tap-r"].forEach((id) => { const z = document.getElementById(id); if (z) z.style.pointerEvents = "none"; });
+      const scroller = $("#r-text-scroll");
+      const maxScroll = () => Math.max(1, scroller.scrollHeight - scroller.clientHeight);
+      if (frac) setTimeout(() => { scroller.scrollTop = frac * maxScroll(); }, 40);
+      scroller.addEventListener("scroll", debounce(() => {
+        R.textFrac = scroller.scrollTop / maxScroll();
+        updateTextProgress();
+      }, 120));
+      scroller.addEventListener("click", (e) => {
+        if (R.settingsOpen) return closeReaderSheet();
+        const sel = window.getSelection ? String(window.getSelection() || "").trim() : "";
+        if (sel) return;
+        const x = e.clientX / (scroller.clientWidth || window.innerWidth);
+        if (x < 0.26) readerPrev(); else if (x > 0.74) readerNext(); else toggleReaderUI();
+      });
+      let selTimer = null;
+      const capSel = () => {
+        const s = window.getSelection ? String(window.getSelection() || "").trim() : "";
+        if (s && s.length > 1) { R.selection = { cfi: "", text: s }; showSelectionPopup(); }
+      };
+      scroller.addEventListener("mouseup", () => { clearTimeout(selTimer); selTimer = setTimeout(capSel, 350); });
+      scroller.addEventListener("touchend", () => { clearTimeout(selTimer); selTimer = setTimeout(capSel, 500); });
+      updateTextProgress();
+    }
+    function updateTextProgress() {
+      if (!R.textChapters) return;
+      let before = 0;
+      for (let i = 0; i < R.curChapterIdx; i++) before += R.textChapters[i].text.length;
+      const ch = R.textChapters[R.curChapterIdx];
+      R.curPercent = Math.min(1, Math.max(0, (before + (R.textFrac || 0) * (ch ? ch.text.length : 0)) / (R.textTotal || 1)));
+      updateReaderStatus();
+      savePositionDebounced();
+    }
+    /* ---- Truyện tranh CBZ: từng trang ảnh, sắp theo tên tự nhiên ---- */
+    async function openCbz(buf) {
+      if (!window.JSZip) throw new Error("Chưa tải được thư viện mở file CBZ — anh kiểm tra mạng rồi mở lại.");
+      const zip = await JSZip.loadAsync(buf.slice(0));
+      const names = [];
+      zip.forEach((p, en) => { if (!en.dir && /\.(jpe?g|png|gif|webp)$/i.test(p) && p.indexOf("__MACOSX") < 0) names.push(p); });
+      names.sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" }));
+      if (!names.length) throw new Error("File CBZ này không có trang ảnh nào đọc được.");
+      R.cbzUrls = [];
+      for (const n of names) { const b = await zip.file(n).async("blob"); R.cbzUrls.push(URL.createObjectURL(b)); }
+      R.cbzTotal = names.length;
+      const pos = posOf(R.book.id);
+      R.cbzPage = pos && pos.page ? Math.min(R.cbzTotal, Math.max(1, pos.page)) : (pos && typeof pos.percent === "number" ? Math.min(R.cbzTotal, Math.max(1, Math.round(pos.percent * R.cbzTotal))) : 1);
+      renderCbzPage();
+    }
+    function renderCbzPage() {
+      const stage = $("#r-stage"); if (!stage || !R.cbzUrls) return;
+      R.cbzPage = Math.min(R.cbzTotal, Math.max(1, R.cbzPage));
+      stage.innerHTML = '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:60px 4px 92px;background:#14100b"><img alt="Trang ' + R.cbzPage + '" src="' + R.cbzUrls[R.cbzPage - 1] + '" style="max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 30px rgba(0,0,0,.45)" /></div>';
+      R.curPercent = R.cbzTotal ? R.cbzPage / R.cbzTotal : 0;
+      R.curChapterLabel = "Trang " + R.cbzPage;
+      updateReaderStatus();
+      savePositionDebounced();
+    }
     /* ---- Điều hướng chung ---- */
     function readerNext() {
       if (R.mode === "epub" && R.rendition) { R.rendition.next(); applyPageAnim(1); }
+      else if (isTextMode()) {
+        const w = $("#r-text-scroll");
+        if (w && w.scrollTop + w.clientHeight < w.scrollHeight - 8) w.scrollBy({ top: w.clientHeight * 0.92, behavior: "smooth" });
+        else if (R.textChapters && R.curChapterIdx + 1 < R.textChapters.length) { renderTextChapter(R.curChapterIdx + 1, 0); applyPageAnim(1); }
+      }
+      else if (R.mode === "cbz") { if (R.cbzPage < R.cbzTotal) { R.cbzPage++; renderCbzPage(); applyPageAnim(1); } }
       else if (R.mode === "pdf" && !R.pdfScrollMode) { renderPdfPage(R.pdfPage + 1); applyPageAnim(1); }
       else if (R.mode === "pdf") { const w = $("#r-pdf-scroll"); if (w) w.scrollBy({ top: w.clientHeight * 0.9, behavior: "smooth" }); }
     }
     function readerPrev() {
       if (R.mode === "epub" && R.rendition) { R.rendition.prev(); applyPageAnim(-1); }
+      else if (isTextMode()) {
+        const w = $("#r-text-scroll");
+        if (w && w.scrollTop > 8) w.scrollBy({ top: -w.clientHeight * 0.92, behavior: "smooth" });
+        else if (R.curChapterIdx > 0) { renderTextChapter(R.curChapterIdx - 1, 0.999); applyPageAnim(-1); }
+      }
+      else if (R.mode === "cbz") { if (R.cbzPage > 1) { R.cbzPage--; renderCbzPage(); applyPageAnim(-1); } }
       else if (R.mode === "pdf" && !R.pdfScrollMode) { renderPdfPage(R.pdfPage - 1); applyPageAnim(-1); }
       else if (R.mode === "pdf") { const w = $("#r-pdf-scroll"); if (w) w.scrollBy({ top: -w.clientHeight * 0.9, behavior: "smooth" }); }
     }
@@ -1900,25 +2430,65 @@
       if (R.mode === "epub" && R.eBook && R.rendition) {
         if (R.eBook.locations && R.eBook.locations.total) R.rendition.display(R.eBook.locations.cfiFromPercentage(frac));
         else if (R.eBook.spine) { const idx = Math.min(R.eBook.spine.length - 1, Math.floor(frac * R.eBook.spine.length)); R.rendition.display(R.eBook.spine.get(idx).href); }
+      } else if (isTextMode() && R.textChapters) {
+        let target = frac * (R.textTotal || 1);
+        for (let i = 0; i < R.textChapters.length; i++) {
+          const len = R.textChapters[i].text.length;
+          if (target <= len || i === R.textChapters.length - 1) { renderTextChapter(i, len ? Math.min(1, target / len) : 0); break; }
+          target -= len;
+        }
+      } else if (R.mode === "cbz") {
+        R.cbzPage = Math.min(R.cbzTotal, Math.max(1, Math.round(frac * R.cbzTotal) || 1)); renderCbzPage();
       } else if (R.mode === "pdf") {
         const p = Math.max(1, Math.round(frac * R.pdfTotal));
         if (R.pdfScrollMode) { const w = $("#r-pdf-scroll"); const t = w && $('canvas[data-page="' + p + '"]', w); if (t) w.scrollTop = t.offsetTop - 12; R.pdfPage = p; updateReaderStatus(); savePositionDebounced(); }
         else renderPdfPage(p);
       }
     }
+    /* Nút “↩ Về trang [số]” (mục 15): sau khi nhảy chương từ Mục lục hoặc kéo thanh
+       tiến độ, nút nổi 8 giây ở góc dưới trình đọc; bấm vào quay về đúng vị trí trước khi nhảy. */
+    let returnPoint = null, returnChipTimer = null;
+    function noteReturnPoint() {
+      if (!R.book) return;
+      if (R.mode === "epub") returnPoint = { mode: "epub", cfi: R.curCfi, page: R.totalPages ? Math.min(R.totalPages, Math.max(1, Math.round(R.curPercent * R.totalPages))) : 0, percent: R.curPercent };
+      else if (isTextMode()) returnPoint = { mode: "text", chapterIdx: R.curChapterIdx, frac: R.textFrac || 0, page: R.curChapterIdx + 1, percent: R.curPercent };
+      else if (R.mode === "cbz") returnPoint = { mode: "cbz", page: R.cbzPage, percent: R.curPercent };
+      else returnPoint = { mode: "pdf", page: R.pdfPage, percent: R.curPercent };
+      showReturnChip();
+    }
+    function showReturnChip() {
+      hideReturnChip();
+      const root = $("#reader"); if (!root || !returnPoint) return;
+      const btn = document.createElement("button");
+      btn.className = "r-return"; btn.id = "r-return";
+      btn.textContent = "↩ Về trang " + (returnPoint.page || (Math.round(returnPoint.percent * 100) + "%"));
+      btn.addEventListener("click", () => {
+        const rp = returnPoint; hideReturnChip();
+        if (!rp) return;
+        if (rp.mode === "epub" && R.rendition && rp.cfi) R.rendition.display(rp.cfi);
+        else if (rp.mode === "text") renderTextChapter(rp.chapterIdx || 0, rp.frac || 0);
+        else if (rp.mode === "cbz") { R.cbzPage = rp.page || 1; renderCbzPage(); }
+        else if (rp.mode === "pdf") sliderJump(rp.page / Math.max(1, R.pdfTotal));
+      });
+      root.appendChild(btn);
+      returnChipTimer = setTimeout(hideReturnChip, 8000);
+    }
+    function hideReturnChip() { clearTimeout(returnChipTimer); const b = $("#r-return"); if (b) b.remove(); }
     /* ---- Vị trí đọc + tốc độ đọc ---- */
     function savePosition() {
       if (!R.book) return;
       const prev = DB.positions[R.book.id] || {};
       const pos = Object.assign({}, prev, {
-        percent: R.mode === "epub" ? R.curPercent : (R.pdfTotal ? R.pdfPage / R.pdfTotal : prev.percent || 0),
-        chapterLabel: R.mode === "epub" ? R.curChapterLabel : ("Trang " + R.pdfPage),
+        percent: R.curPercent || prev.percent || 0,
+        chapterLabel: R.mode === "pdf" ? ("Trang " + R.pdfPage) : R.mode === "cbz" ? ("Trang " + R.cbzPage) : R.curChapterLabel,
         chapterIdx: R.curChapterIdx, updatedAt: Date.now(),
       });
-      if (R.mode === "epub") pos.cfi = R.curCfi;
-      if (R.mode === "pdf") pos.page = R.pdfPage;
+      if (R.mode === "epub") { pos.cfi = R.curCfi; if (R.totalPages) pos.totalPages = R.totalPages; }
+      if (R.mode === "pdf") { pos.page = R.pdfPage; if (R.pdfTotal) pos.totalPages = R.pdfTotal; }
+      if (isTextMode()) { pos.chapterFrac = R.textFrac || 0; if (R.textChapters) pos.totalPages = R.textChapters.length; delete pos.cfi; delete pos.page; }
+      if (R.mode === "cbz") { pos.page = R.cbzPage; if (R.cbzTotal) pos.totalPages = R.cbzTotal; }
       DB.positions[R.book.id] = pos;
-      persistDebounced("positions", 400);
+      persistDebounced("positions", 2000); // debounce tối thiểu 2 giây trước khi ghi Firebase
     }
     const savePositionDebounced = debounce(savePosition, 900);
     function startReadTracking() {
@@ -1927,9 +2497,18 @@
       R.tickTimer = setInterval(() => {
         if (!R.open || document.hidden) return;
         const now = Date.now(); const mins = (now - R.lastTick) / 60000; R.lastTick = now;
-        const today = new Date().toISOString().slice(0, 10);
+        const today = localDayKey(); // ngày địa phương, không dùng UTC
         DB.stats.readLog[today] = (DB.stats.readLog[today] || 0) + mins;
         persistDebounced("stats", 4000);
+        // Học tốc độ đọc cho sách chữ TXT/DOCX/FB2: ký tự đã đọc / phút theo tổng số ký tự.
+        if (isTextMode() && R.textTotal && mins > 0.05) {
+          const dChars = Math.max(0, (R.curPercent - R.lastPercent)) * R.textTotal;
+          if (dChars > 200) {
+            const rate = dChars / mins;
+            if (rate > 200 && rate < 6000) { DB.settings.wpm = DB.settings.wpm ? Math.round(DB.settings.wpm * 0.7 + rate * 0.3) : Math.round(rate); persistDebounced("settings", 4000); }
+          }
+          R.lastPercent = R.curPercent;
+        }
         // Học tốc độ đọc: ký tự đã đọc / phút (EPUB, khi locations sẵn sàng).
         if (R.mode === "epub" && R.eBook && R.eBook.locations && R.eBook.locations.total && mins > 0.05) {
           const dChars = Math.max(0, (R.curPercent - R.lastPercent)) * R.eBook.locations.total * 1024;
@@ -1944,21 +2523,60 @@
     }
     function stopReadTracking() { clearInterval(R.tickTimer); R.tickTimer = null; }
     /* ---- Đánh dấu trang / ghi chú / gạch chân ---- */
-    function hereKey() { return R.mode === "epub" ? R.curCfi : "page:" + R.pdfPage; }
+    function hereKey() {
+      if (R.mode === "epub") return R.curCfi;
+      if (isTextMode()) return "text:" + R.curChapterIdx;
+      if (R.mode === "cbz") return "page:" + R.cbzPage;
+      return "page:" + R.pdfPage;
+    }
     function isBookmarkedHere() {
       if (!R.book) return false;
       const list = DB.bookmarks[R.book.id] || [];
       return list.some((b) => b.loc === hereKey());
     }
-    function toggleBookmark() {
+    /* Lấy sẵn đoạn trích ngắn tại đúng vị trí đánh dấu để Sổ tay hiện ngữ cảnh (mục 22). */
+    async function captureBookmarkExcerpt() {
+      try {
+        if (R.mode === "epub" && R.rendition && R.curCfi) {
+          const contents = R.rendition.getContents()[0];
+          if (contents) {
+            const rng = contents.range(R.curCfi);
+            if (rng) {
+              let text = ""; let node = rng.startContainer; const off = rng.startOffset || 0; let first = true;
+              while (node && text.length < 200) {
+                if (node.nodeType === 3) text += first ? node.textContent.slice(off) : node.textContent;
+                else if (!first && node.nodeType === 1) text += " " + (node.textContent || "");
+                first = false;
+                let m = node;
+                while (m && !m.nextSibling) m = m.parentNode;
+                node = m ? m.nextSibling : null;
+              }
+              text = text.replace(/\s+/g, " ").trim().slice(0, 200);
+              if (text) return text;
+            }
+          }
+        } else if (isTextMode() && R.textChapters) {
+          const c = R.textChapters[R.curChapterIdx];
+          if (c) { const start = Math.floor((R.textFrac || 0) * c.text.length); const t = c.text.slice(start, start + 200); if (t) return t; }
+        } else if (R.mode === "pdf" && R.pdfDoc) {
+          const page = await R.pdfDoc.getPage(R.pdfPage);
+          const tc = await page.getTextContent();
+          const text = tc.items.map((it) => it.str).join(" ").replace(/\s+/g, " ").trim().slice(0, 200);
+          if (text) return text;
+        }
+      } catch (e) {}
+      return "";
+    }
+    async function toggleBookmark() {
       if (!R.book) return;
       const list = DB.bookmarks[R.book.id] || (DB.bookmarks[R.book.id] = []);
       const key = hereKey();
       const idx = list.findIndex((b) => b.loc === key);
       if (idx >= 0) { list.splice(idx, 1); toast("Đã bỏ đánh dấu trang này."); }
       else {
-        list.push({ id: uid(), loc: key, label: R.mode === "epub" ? (R.curChapterLabel + (R.pageInChapter ? " · " + R.pageInChapter : "")) : ("Trang " + R.pdfPage), percent: R.curPercent, createdAt: Date.now() });
-        toast("Đã đánh dấu trang — xem lại trong mục Sổ tay.");
+        const excerpt = await captureBookmarkExcerpt();
+        list.push({ id: uid(), loc: key, label: R.mode === "epub" ? (R.curChapterLabel + (R.pageInChapter ? " · " + R.pageInChapter : "")) : isTextMode() ? R.curChapterLabel : R.mode === "cbz" ? ("Trang " + R.cbzPage) : ("Trang " + R.pdfPage), percent: R.curPercent, excerpt: excerpt, createdAt: Date.now() });
+        toast("✓ Đã tự động đánh dấu trang đang đọc");
       }
       persist("bookmarks"); updateReaderStatus();
     }
@@ -2028,19 +2646,26 @@
       const root = $("#r-sheet-root"); if (!root) return;
       R.settingsOpen = true;
       let items = "";
-      if (R.mode === "epub" && R.toc.length) {
+      if (isTextMode() && R.textChapters && R.textChapters.length) {
+        items = R.textChapters.map((t, i) => '<button class="menu-item" data-toc-text="' + i + '">' + icon("book", 16) + " " + esc(t.title || ("Chương " + (i + 1))) + "</button>").join("");
+      } else if (R.mode === "cbz") {
+        items = '<p style="color:var(--dim);font-size:13.5px;padding:4px 2px">Truyện tranh có ' + R.cbzTotal + " trang — dùng nút Trước/Sau, chạm mép trang hoặc thanh trượt ở dưới để chuyển trang.</p>";
+      } else if (R.mode === "epub" && R.toc.length) {
         items = R.toc.map((t, i) => '<button class="menu-item" data-toc="' + i + '">' + icon("book", 16) + " " + esc(t.label || ("Chương " + (i + 1))) + "</button>").join("");
       } else if (R.mode === "pdf") {
         items = '<p style="color:var(--dim);font-size:13.5px;padding:4px 2px">Sách PDF: dùng thanh trượt ở dưới để nhảy tới trang bất kỳ (tổng ' + R.pdfTotal + " trang).</p>";
       } else items = '<p style="color:var(--dim);font-size:13.5px;padding:4px 2px">Sách này không có mục lục.</p>';
       const bms = (R.book && DB.bookmarks[R.book.id]) || [];
-      if (bms.length) items += '<h3 style="margin-top:14px">Trang đã đánh dấu</h3>' + bms.map((b) => '<button class="menu-item" data-bm="' + b.id + '">' + icon("bookmark", 16) + " " + esc(b.label) + "</button>").join("");
+      if (bms.length) items += '<h3 style="margin-top:14px">Trang đã đánh dấu</h3>' + bms.map((b) => '<button class="menu-item" data-bm="' + b.id + '">' + icon("bookmark", 16) + '<span>' + esc(b.label) + (b.excerpt ? '<span style="display:block;font-size:12px;font-weight:400;color:var(--dim);white-space:normal;line-height:1.45">“' + esc(b.excerpt.slice(0, 140)) + '”</span>' : "") + "</span></button>").join("");
       root.innerHTML = '<div class="sheet"><h3>Mục lục</h3>' + items + '<button class="btn" id="sheet-close" style="margin-top:10px">Đóng</button></div>';
       $("#sheet-close").addEventListener("click", closeReaderSheet);
-      $$("#r-sheet-root [data-toc]").forEach((el) => el.addEventListener("click", () => { const t = R.toc[Number(el.getAttribute("data-toc"))]; closeReaderSheet(); if (t && R.rendition) R.rendition.display(t.href); }));
+      $$("#r-sheet-root [data-toc]").forEach((el) => el.addEventListener("click", () => { const t = R.toc[Number(el.getAttribute("data-toc"))]; closeReaderSheet(); if (t && R.rendition) { noteReturnPoint(); R.rendition.display(t.href); } }));
+      $$("#r-sheet-root [data-toc-text]").forEach((el) => el.addEventListener("click", () => { const i = Number(el.getAttribute("data-toc-text")); closeReaderSheet(); noteReturnPoint(); renderTextChapter(i, 0); }));
       $$("#r-sheet-root [data-bm]").forEach((el) => el.addEventListener("click", () => {
         const bm = bms.find((x) => x.id === el.getAttribute("data-bm")); closeReaderSheet(); if (!bm) return;
         if (R.mode === "epub" && R.rendition && bm.loc.indexOf("epubcfi") === 0) R.rendition.display(bm.loc);
+        else if (isTextMode() && bm.loc.indexOf("text:") === 0) renderTextChapter(Number(bm.loc.slice(5)) || 0, 0);
+        else if (R.mode === "cbz") { const p = Number(String(bm.loc).replace("page:", "")); if (p) { R.cbzPage = p; renderCbzPage(); } }
         else if (R.mode === "pdf") { const p = Number(String(bm.loc).replace("page:", "")); if (p) sliderJump(p / R.pdfTotal); }
       }));
     }
@@ -2054,32 +2679,89 @@
         '<div class="rowline"><label>Tự pha màu</label><span style="font-size:12.5px;color:var(--dim)">Nền</span><input type="color" id="rs-cbg" value="' + esc(st.customBg) + '" /><span style="font-size:12.5px;color:var(--dim)">Chữ</span><input type="color" id="rs-ctext" value="' + esc(st.customText) + '" /><button class="btn small' + (st.useCustom ? " primary" : "") + '" id="rs-usecustom">' + (st.useCustom ? "Đang dùng màu tự pha" : "Dùng màu tự pha") + "</button></div>" +
         '<div class="rowline"><label>Ngày / đêm</label><button class="btn small' + (st.autoDayNight ? " primary" : "") + '" id="rs-autodn">' + icon(st.autoDayNight ? "moon" : "sun", 15) + (st.autoDayNight ? " Tự đổi ngày/đêm: Bật" : " Tự đổi ngày/đêm: Tắt") + "</button></div>" +
         '<div class="rowline"><label>Cỡ chữ</label><input type="range" id="rs-fs" min="15" max="28" step="1" value="' + st.fontSize + '" /><b id="rs-fs-v">' + st.fontSize + "px</b></div>" +
+        '<div class="rowline"><label>Mức sẵn</label><div class="seg"><button data-fs-preset="16" class="' + (st.fontSize === 16 ? "active" : "") + '">Nhỏ</button><button data-fs-preset="19" class="' + (st.fontSize === 19 ? "active" : "") + '">Vừa</button><button data-fs-preset="22" class="' + (st.fontSize === 22 ? "active" : "") + '">Lớn</button><button data-fs-preset="26" class="' + (st.fontSize === 26 ? "active" : "") + '">Rất lớn</button></div></div>' +
         '<div class="rowline"><label>Kiểu chữ</label><div class="seg"><button data-ff="serif" class="' + (st.fontFamily === "serif" ? "active" : "") + '">Chữ có chân (sách)</button><button data-ff="sans" class="' + (st.fontFamily === "sans" ? "active" : "") + '">Chữ không chân</button></div></div>' +
         '<div class="rowline"><label>Giãn dòng</label><input type="range" id="rs-lh" min="1.4" max="2.6" step="0.05" value="' + st.lineHeight + '" /><b id="rs-lh-v">' + st.lineHeight.toFixed(2) + "</b></div>" +
         '<div class="rowline"><label>Hiệu ứng lật</label></div><div class="seg">' + PAGE_EFFECTS.map((e) => '<button data-eff="' + e.id + '" class="' + (st.effect === e.id ? "active" : "") + '">' + e.label + "</button>").join("") + "</div>" +
-        '<p style="font-size:12px;color:var(--dim);line-height:1.5">Đổi hiệu ứng “Cuộn dọc” sẽ mở lại sách ở đúng vị trí đang đọc. Với sách PDF, cỡ chữ/nền chỉ áp cho EPUB.</p>' +
+        '<p style="font-size:12px;color:var(--dim);line-height:1.5">Đổi hiệu ứng “Cuộn dọc” sẽ mở lại sách ở đúng vị trí đang đọc. Cỡ chữ, giãn dòng và nền đọc áp cho EPUB, TXT, DOCX, FB2; PDF và truyện tranh CBZ giữ nguyên bố cục gốc của file.</p>' +
         '<button class="btn" id="sheet-close">Đóng</button></div>';
       $("#sheet-close").addEventListener("click", closeReaderSheet);
-      $$("#r-sheet-root [data-bg]").forEach((el) => el.addEventListener("click", () => { st.bgId = el.getAttribute("data-bg"); st.useCustom = false; persist("settings"); applyEpubTheme(); openReaderSettings(); }));
-      $("#rs-cbg").addEventListener("input", (e) => { st.customBg = e.target.value; if (st.useCustom) { persistDebounced("settings"); applyEpubTheme(); } });
-      $("#rs-ctext").addEventListener("input", (e) => { st.customText = e.target.value; if (st.useCustom) { persistDebounced("settings"); applyEpubTheme(); } });
-      $("#rs-usecustom").addEventListener("click", () => { st.useCustom = !st.useCustom; persist("settings"); applyEpubTheme(); openReaderSettings(); });
-      $("#rs-autodn").addEventListener("click", () => { st.autoDayNight = !st.autoDayNight; persist("settings"); applyEpubTheme(); openReaderSettings(); });
-      $("#rs-fs").addEventListener("input", (e) => { st.fontSize = Number(e.target.value); $("#rs-fs-v").textContent = st.fontSize + "px"; persistDebounced("settings"); if (R.mode === "epub") applyEpubTheme(); });
-      $("#rs-lh").addEventListener("input", (e) => { st.lineHeight = Number(e.target.value); $("#rs-lh-v").textContent = st.lineHeight.toFixed(2); persistDebounced("settings"); if (R.mode === "epub") applyEpubTheme(); });
-      $$("#r-sheet-root [data-ff]").forEach((el) => el.addEventListener("click", () => { st.fontFamily = el.getAttribute("data-ff"); persist("settings"); if (R.mode === "epub") applyEpubTheme(); openReaderSettings(); }));
+      $$("#r-sheet-root [data-bg]").forEach((el) => el.addEventListener("click", () => { st.bgId = el.getAttribute("data-bg"); st.useCustom = false; persist("settings"); applyAnyTheme(); openReaderSettings(); }));
+      $("#rs-cbg").addEventListener("input", (e) => { st.customBg = e.target.value; if (st.useCustom) { persistDebounced("settings"); applyAnyTheme(); } });
+      $("#rs-ctext").addEventListener("input", (e) => { st.customText = e.target.value; if (st.useCustom) { persistDebounced("settings"); applyAnyTheme(); } });
+      $("#rs-usecustom").addEventListener("click", () => { st.useCustom = !st.useCustom; persist("settings"); applyAnyTheme(); openReaderSettings(); });
+      $("#rs-autodn").addEventListener("click", () => { st.autoDayNight = !st.autoDayNight; persist("settings"); applyAnyTheme(); openReaderSettings(); });
+      $("#rs-fs").addEventListener("input", (e) => { st.fontSize = Number(e.target.value); $("#rs-fs-v").textContent = st.fontSize + "px"; persistDebounced("settings"); applyAnyTheme(); });
+      $$("#r-sheet-root [data-fs-preset]").forEach((el) => el.addEventListener("click", () => { st.fontSize = Number(el.getAttribute("data-fs-preset")); persistDebounced("settings"); applyAnyTheme(); openReaderSettings(); }));
+      $("#rs-lh").addEventListener("input", (e) => { st.lineHeight = Number(e.target.value); $("#rs-lh-v").textContent = st.lineHeight.toFixed(2); persistDebounced("settings"); applyAnyTheme(); });
+      $$("#r-sheet-root [data-ff]").forEach((el) => el.addEventListener("click", () => { st.fontFamily = el.getAttribute("data-ff"); persist("settings"); applyAnyTheme(); openReaderSettings(); }));
       $$("#r-sheet-root [data-eff]").forEach((el) => el.addEventListener("click", () => {
         const eff = el.getAttribute("data-eff"); const wasScroll = st.effect === "scroll"; st.effect = eff; persist("settings");
         if ((eff === "scroll") !== wasScroll && R.book) { const id = R.book.id; closeReader(true); R.open = false; openBook(id); }
         else openReaderSettings();
       }));
     }
+    /* ⚡ Tinh gọn chương này (EPUB): AI tóm tắt chương đang đọc thành 5 ý chính + 1 bài học,
+       hiện trong sheet ngay trong trình đọc, kèm nút nghe bản tóm tắt bằng giọng thiết bị. */
+    let digestChunks = [], digestIdx = 0, digestOn = false;
+    function stopDigestSpeech() { digestOn = false; if ("speechSynthesis" in window) { try { speechSynthesis.cancel(); } catch (e) {} } }
+    function speakDigestNext() {
+      if (!digestOn || digestIdx >= digestChunks.length) { digestOn = false; return; }
+      const u = new SpeechSynthesisUtterance(digestChunks[digestIdx]);
+      const v = pickViVoice(); if (v) u.voice = v;
+      u.lang = (v && v.lang) || "vi-VN";
+      u.onend = () => { if (digestOn) { digestIdx++; speakDigestNext(); } };
+      u.onerror = () => { if (digestOn) { digestIdx++; speakDigestNext(); } };
+      speechSynthesis.speak(u);
+    }
+    function speakDigest(text) {
+      if (!("speechSynthesis" in window)) { toast("Máy này không có giọng đọc sẵn — anh đọc bản tóm tắt trên màn hình nhé."); return; }
+      stopAudio(); // dừng chương trình nghe chính trước, không để hai giọng chồng nhau
+      stopDigestSpeech();
+      digestChunks = splitChunks(cleanForSpeech(text), 190);
+      digestIdx = 0; digestOn = true;
+      speakDigestNext();
+      toast("Đang đọc bản tóm tắt bằng giọng của máy…");
+    }
+    async function digestChapter() {
+      if (!R.book) return;
+      if (R.mode === "cbz") { toast("Truyện tranh chỉ đọc bằng mắt nhé"); return; }
+      if (R.mode !== "epub" && !isTextMode()) { toast("“⚡ Tinh gọn chương này” hiện dùng cho sách EPUB, TXT, DOCX, FB2 anh nhé."); return; }
+      const root = $("#r-sheet-root"); if (!root) return;
+      R.settingsOpen = true;
+      const keys = loadKeys();
+      if (!keys.claude && !keys.gemini && !keys.openai) {
+        root.innerHTML = '<div class="sheet"><h3>⚡ Tinh gọn chương này</h3><div class="card" style="box-shadow:none"><h3>Cần gắn “Chìa khóa AI”</h3><p>Để AI tóm tắt và trò chuyện về nội dung sách, bạn cần gắn \'Chìa khóa AI\' (API Key) — dán khóa tại mục Cài đặt.</p></div><button class="btn" id="sheet-close" style="margin-top:10px">Đóng</button></div>';
+        $("#sheet-close").addEventListener("click", closeReaderSheet);
+        return;
+      }
+      root.innerHTML = '<div class="sheet"><h3>⚡ Tinh gọn chương này</h3><div style="display:flex;gap:10px;align-items:center;color:var(--dim);font-size:13.5px"><div class="spinner" style="width:22px;height:22px"></div><div>Đang nhờ AI tóm tắt chương đang đọc…</div></div></div>';
+      try {
+        const chapters = await extractChapters(R.book);
+        const ch = isTextMode() ? (chapters[Math.min(chapters.length - 1, Math.max(0, R.curChapterIdx))] || chapters[0]) : (chapters.find((c) => c.spineIndex === R.curChapterIdx) || chapters[Math.min(chapters.length - 1, Math.max(0, R.curChapterIdx))] || chapters[0]);
+        if (!ch) throw new Error("Chưa trích được nội dung chương này (có thể là sách scan ảnh).");
+        const prompt = "Hãy tóm tắt chương sách sau thành 5 ý chính ngắn gọn bằng tiếng Việt, sau đó thêm 1 bài học áp dụng vào đời sống/công việc. Trả lời bằng tiếng Việt, rõ ràng, không chép lại nguyên văn dài.\n\nChương: “" + ch.title + "”\n\n" + ch.text.slice(0, 9000);
+        let text = "";
+        for (const p of ["claude", "gemini", "openai"]) {
+          if (!keys[p]) continue;
+          try { text = await AI_CALLERS[p](keys[p], prompt); if (text) break; } catch (e) {}
+        }
+        if (!text) throw new Error("AI chưa trả lời được lúc này — anh thử lại sau ít phút nhé.");
+        root.innerHTML = '<div class="sheet"><h3>⚡ Tinh gọn — ' + esc(ch.title) + '</h3><div style="font-size:14.5px;line-height:1.65;white-space:pre-wrap">' + esc(text) + '</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn primary" id="digest-listen" style="min-height:52px;padding:12px 20px">🔊 Nghe bản tóm tắt</button><button class="btn" id="sheet-close">Đóng</button></div></div>';
+        $("#sheet-close").addEventListener("click", () => { stopDigestSpeech(); closeReaderSheet(); });
+        $("#digest-listen").addEventListener("click", () => speakDigest(text));
+      } catch (e) {
+        root.innerHTML = '<div class="sheet"><h3>⚡ Tinh gọn chương này</h3><p style="color:var(--dim);font-size:14px;line-height:1.55">' + esc((e && e.message) || e) + '</p><button class="btn" id="sheet-close">Đóng</button></div>';
+        $("#sheet-close").addEventListener("click", closeReaderSheet);
+      }
+    }
     /* Đọc ↔ Nghe liền mạch: mở mục Nghe tại đúng chương đang đọc. */
     function listenFromReader() {
       if (!R.book) return;
-      const bookId = R.book.id; const chIdx = R.mode === "epub" ? R.curChapterIdx : null;
+      if (R.mode === "cbz") { toast("Truyện tranh chỉ đọc bằng mắt nhé"); return; }
+      const bookId = R.book.id; const chIdx = (R.mode === "epub" || isTextMode()) ? R.curChapterIdx : null;
       const pos = DB.positions[bookId] || (DB.positions[bookId] = {});
-      pos.listen = Object.assign({}, pos.listen || {}, { chapterFromReader: chIdx, percent: R.curPercent, updatedAt: Date.now() });
+      pos.listen = Object.assign({}, pos.listen || {}, { chapterFromReader: chIdx, chapterIdx: chIdx, percent: R.curPercent, updatedAt: Date.now() });
       persistDebounced("positions", 300);
       closeReader();
       S.view = "listen"; S.listenBookId = bookId; render();
@@ -2090,7 +2772,8 @@
     function bindView() {
       const lq = $("#lib-q");
       if (lq) lq.addEventListener("input", debounce(() => { S.libQuery = lq.value; render(); const nq = $("#lib-q"); if (nq) { nq.focus(); nq.setSelectionRange(nq.value.length, nq.value.length); } }, 350));
-      $$("[data-filter]").forEach((el) => el.addEventListener("click", () => { S.libFilter = el.getAttribute("data-filter"); render(); }));
+      $$("[data-status]").forEach((el) => el.addEventListener("click", () => { S.libStatus = el.getAttribute("data-status"); render(); }));
+      const lf = $("#lib-format"); if (lf) lf.addEventListener("change", () => { S.libFilter = lf.value; render(); });
       const ls = $("#lib-sort"); if (ls) ls.addEventListener("change", () => { S.libSort = ls.value; render(); });
       const lc = $("#lib-collection"); if (lc) lc.addEventListener("change", () => { S.libCollection = lc.value; render(); });
       const nc = $("[data-new-collection]"); if (nc) nc.addEventListener("click", () => newCollection(null));
@@ -2098,7 +2781,7 @@
       const pq = $("#play-q");
       if (pq) pq.addEventListener("input", debounce(() => { S.playQuery = pq.value; render(); const nq = $("#play-q"); if (nq) { nq.focus(); nq.setSelectionRange(nq.value.length, nq.value.length); } }, 350));
       const ce = $("[data-connect-extra]"); if (ce) ce.addEventListener("click", connectExtraAccount);
-      $$("[data-listen-book]").forEach((el) => el.addEventListener("click", () => { S.view = "listen"; S.listenBookId = el.getAttribute("data-listen-book"); render(); window.scrollTo(0, 0); }));
+      $$("[data-listen-book]").forEach((el) => el.addEventListener("click", () => { const bid = el.getAttribute("data-listen-book"); const bk = findBook(bid); if (bk && bk.format === "cbz") { toast("Truyện tranh chỉ đọc bằng mắt nhé"); return; } S.view = "listen"; S.listenBookId = bid; render(); window.scrollTo(0, 0); }));
       const sg = $("[data-ai-suggest]"); if (sg) sg.addEventListener("click", getSuggestions);
       $$("[data-goto-ai-book]").forEach((el) => el.addEventListener("click", () => { S.view = "ai"; S.aiBookId = el.getAttribute("data-goto-ai-book"); render(); }));
     }
@@ -2109,12 +2792,12 @@
     const A = {
       bookId: "", chapters: null, chIdx: 0, chunks: [], chunkIdx: 0,
       playing: false, mode: "device", rate: 1, voice: null, timerMin: 0, timerId: null, timerLeft: 0,
-      audio: null, audioUrl: "", generating: "",
+      audio: null, audioUrl: "", generating: "", lastListenTick: 0, stopAtChapterEnd: false,
     };
     function viewListen() {
       let h = '<div class="shelf-head" style="margin-top:2px"><h2>Nghe sách &amp; Podcast</h2><span class="count">' + DB.episodes.length + " tập đã tạo</span></div>";
       if (!DB.books.length) {
-        h += '<section class="empty"><h3>Chưa có sách để nghe</h3><p>Thêm sách EPUB/PDF vào thư viện trước — app sẽ biến từng chương thành audio để anh nghe như podcast.</p><div class="row"><button class="btn primary" data-act="add-book">' + icon("plus", 16) + " Thêm sách</button></div></section>";
+        h += '<section class="empty"><h3>Chưa có sách để nghe</h3><p>Thêm sách EPUB, PDF, TXT, DOCX hoặc FB2 vào thư viện trước — app sẽ biến từng chương thành audio để anh nghe như podcast. (Truyện tranh CBZ chỉ đọc bằng mắt.)</p><div class="row"><button class="btn primary" data-act="add-book">' + icon("plus", 16) + " Thêm sách</button></div></section>";
         return h;
       }
       if (!S.listenBookId || !findBook(S.listenBookId)) S.listenBookId = DB.books[0].id;
@@ -2126,11 +2809,13 @@
         DB.books.map((b) => '<option value="' + b.id + '"' + (b.id === book.id ? " selected" : "") + ">" + esc(b.title) + "</option>").join("") + "</select></div>" +
         '<button class="btn" id="listen-read-jump">' + icon("book", 15) + " Đọc tiếp từ chỗ đang nghe</button></div>";
       h += '<div id="listen-chapters"><div class="card" style="display:flex;gap:12px;align-items:center"><div class="spinner"></div><div>Đang chuẩn bị các chương của “' + esc(book.title) + '”…</div></div></div>';
-      h += '<div class="player-bar hidden" id="player-bar"><div class="ttl" id="pb-title"></div><div class="sub" id="pb-sub"></div>' +
-        '<div class="player-ctl"><button class="play-btn" id="pb-toggle" aria-label="Phát / tạm dừng">' + icon("pause", 20) + '</button>' +
-        '<button class="btn small" id="pb-prev-ch">Chương trước</button><button class="btn small" id="pb-next-ch">Chương sau</button>' +
+      h += '<div class="player-bar hidden" id="player-bar"><div class="ttl" id="pb-title"></div><div class="sub" id="pb-sub"></div><div class="sub" id="pb-mode" style="font-weight:700;color:var(--accent-strong)"></div>' +
+        '<div class="player-ctl" style="flex-wrap:nowrap"><button class="btn big-nav" id="pb-prev-sent" aria-label="Câu trước">' + icon("left", 18) + ' Câu trước</button>' +
+        '<button class="play-btn" id="pb-toggle" aria-label="Tạm dừng / Nghe tiếp">' + icon("pause", 22) + '</button>' +
+        '<button class="btn big-nav" id="pb-next-sent" aria-label="Câu sau">Câu sau ' + icon("right", 18) + '</button></div>' +
+        '<div class="player-ctl"><button class="btn small" id="pb-prev-ch">Chương trước</button><button class="btn small" id="pb-next-ch">Chương sau</button>' +
         '<label style="font-size:12.5px;font-weight:700">Tốc độ <select class="select" id="pb-rate"><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></label>' +
-        '<label style="font-size:12.5px;font-weight:700">' + icon("timer", 14) + ' Hẹn giờ tắt <select class="select" id="pb-timer"><option value="0">Không hẹn</option><option value="15">15 phút</option><option value="30">30 phút</option><option value="45">45 phút</option><option value="60">60 phút</option></select></label>' +
+        '<label style="font-size:12.5px;font-weight:700">' + icon("timer", 14) + ' Hẹn giờ tắt <select class="select" id="pb-timer"><option value="0">Không hẹn</option><option value="15">15 phút</option><option value="30">30 phút</option><option value="45">45 phút</option><option value="60">60 phút</option><option value="chapter">Hết chương này</option></select></label>' +
         '<span class="sub" id="pb-timer-left"></span>' +
         '<button class="btn small danger" id="pb-stop">Dừng hẳn</button></div>' +
         '<audio id="pb-audio" controls style="width:100%;margin-top:9px" class="hidden"></audio></div>';
@@ -2169,6 +2854,7 @@
           startDeviceListen(startIdx, ck);
         }
       } catch (e) {
+        if (book.format === "cbz") { box.innerHTML = '<section class="empty"><h3>Truyện tranh chỉ đọc bằng mắt nhé</h3><p>“' + esc(book.title) + '” là truyện tranh dạng ảnh nên không có bản nghe — anh mở sách để xem từng trang nhé.</p></section>'; return; }
         box.innerHTML = '<section class="empty"><h3>Chưa chuẩn bị được audio cho sách này</h3><p>' + esc((e && e.message) || e) + "</p></section>";
       }
     }
@@ -2193,6 +2879,8 @@
       $$("[data-ep-make]", box).forEach((el) => el.addEventListener("click", () => makePodcastEpisode(Number(el.getAttribute("data-ep-make")))));
       $$("[data-ep-play]", box).forEach((el) => el.addEventListener("click", () => playEpisodeFile(el.getAttribute("data-ep-play"))));
     }
+    /* Lọc ký tự định dạng (* _ # | < > [ ]) để giọng máy không đọc vấp ký tự lạ. */
+    function cleanForSpeech(text) { return String(text || "").replace(/[*_#|<>[\]]/g, " ").replace(/\s+/g, " "); }
     function splitChunks(text, max) {
       const parts = []; const sentences = String(text || "").split(/(?<=[.!?…])\s+/);
       let cur = "";
@@ -2214,7 +2902,7 @@
       const book = findBook(A.bookId); if (!book || !A.chapters) return;
       stopFileAudio();
       A.mode = "device"; A.chIdx = chIdx;
-      A.chunks = splitChunks(A.chapters[chIdx].text, 190);
+      A.chunks = splitChunks(cleanForSpeech(A.chapters[chIdx].text), 190);
       A.chunkIdx = Math.min(chunkIdx || 0, Math.max(0, A.chunks.length - 1));
       A.playing = true;
       if (!A.voice) A.voice = pickViVoice();
@@ -2225,6 +2913,7 @@
       if (!("speechSynthesis" in window)) { toast("Máy này không có giọng đọc sẵn — anh dùng “Tạo file podcast” hoặc thử trình duyệt khác nhé."); return; }
       speechSynthesis.cancel();
       if (A.chunkIdx >= A.chunks.length) { nextChapterListen(); return; }
+      if (!A.voice) A.voice = pickViVoice(); // giọng có thể nạp muộn qua onvoiceschanged — chọn lại trước mỗi đoạn
       const u = new SpeechSynthesisUtterance(A.chunks[A.chunkIdx]);
       if (A.voice) u.voice = A.voice;
       u.lang = (A.voice && A.voice.lang) || "vi-VN";
@@ -2232,7 +2921,10 @@
       u.onend = () => {
         if (!A.playing || A.mode !== "device") return;
         A.chunkIdx++; saveListenPos();
-        if (A.chunkIdx >= A.chunks.length) nextChapterListen();
+        if (A.chunkIdx >= A.chunks.length) {
+          if (A.stopAtChapterEnd) { A.stopAtChapterEnd = false; A.playing = false; try { speechSynthesis.cancel(); } catch (e) {} toast("Đã hết chương — app dừng nghe như đã hẹn. Chúc anh thư giãn!"); updatePlayerToggle(); return; }
+          nextChapterListen();
+        }
         else { speakCurrent(); updatePlayerSub(); }
       };
       u.onerror = () => { if (A.playing && A.mode === "device") { A.chunkIdx++; if (A.chunkIdx < A.chunks.length) speakCurrent(); } };
@@ -2260,12 +2952,23 @@
       updatePlayerSub(sub);
       const rate = $("#pb-rate"); if (rate) rate.value = String(A.rate);
       updatePlayerToggle();
+      updatePlayerMode();
     }
     function updatePlayerSub(sub) {
       const el = $("#pb-sub"); if (!el) return;
-      if (A.mode === "file") { el.textContent = sub || "Đang phát file podcast"; return; }
+      const ttl = $("#pb-title");
+      if (A.mode === "file") { if (ttl) ttl.textContent = "Đang nghe " + (sub || "file podcast") + " • Nghe rảnh tay"; el.textContent = sub || "Đang phát file podcast"; return; }
       const ch = A.chapters && A.chapters[A.chIdx];
-      el.textContent = (ch ? ch.title : "") + " · đoạn " + (A.chunkIdx + 1) + "/" + A.chunks.length + (A.voice ? " · giọng: " + A.voice.name : " · giọng mặc định của máy");
+      const book = findBook(A.bookId);
+      if (ttl && ch) ttl.textContent = "Đang đọc " + ch.title + " • Nghe rảnh tay";
+      el.textContent = (book ? book.title + " · " : "") + "đoạn " + (A.chunkIdx + 1) + "/" + A.chunks.length + (A.voice ? " · giọng: " + A.voice.name : " · giọng mặc định của máy");
+    }
+    /* Dòng trạng thái nghe rảnh tay: tốc độ đọc + hẹn giờ tắt đang chọn, luôn nhìn thấy trong khung nghe. */
+    function updatePlayerMode() {
+      const el = $("#pb-mode"); if (!el) return;
+      const tSel = $("#pb-timer"); const tv = tSel ? tSel.value : "0";
+      const tTxt = tv === "chapter" ? "Hết chương này" : (tv && tv !== "0" ? tv + " phút" : "Không hẹn");
+      el.textContent = "Tốc độ đọc: " + A.rate + "× · Hẹn giờ tắt: " + tTxt;
     }
     function updatePlayerToggle() { const b = $("#pb-toggle"); if (b) b.innerHTML = icon(A.playing ? "pause" : "play", 20); }
     function bindPlayer() {
@@ -2283,12 +2986,33 @@
       $("#pb-stop").addEventListener("click", stopAudio);
       $("#pb-prev-ch").addEventListener("click", () => { if (A.mode === "device" && A.chIdx > 0) startDeviceListen(A.chIdx - 1, 0); });
       $("#pb-next-ch").addEventListener("click", () => { if (A.mode === "device") nextChapterListen(); });
-      $("#pb-rate").addEventListener("change", (e) => { A.rate = Number(e.target.value); if (A.mode === "device" && A.playing) speakCurrent(); if (A.audio) A.audio.playbackRate = A.rate; toast("Tốc độ nghe: " + A.rate + "×"); });
-      $("#pb-timer").addEventListener("change", (e) => setSleepTimer(Number(e.target.value)));
+      const ps = $("#pb-prev-sent");
+      if (ps) ps.addEventListener("click", () => {
+        if (A.mode === "file" && A.audio) { A.audio.currentTime = Math.max(0, A.audio.currentTime - 15); return; }
+        if (A.mode === "device" && A.chunkIdx > 0) { A.chunkIdx--; A.playing = true; speakCurrent(); updatePlayerToggle(); }
+      });
+      const ns = $("#pb-next-sent");
+      if (ns) ns.addEventListener("click", () => {
+        if (A.mode === "file" && A.audio) { A.audio.currentTime = Math.min(A.audio.duration || 0, A.audio.currentTime + 15); return; }
+        if (A.mode === "device") { A.chunkIdx++; A.playing = true; speakCurrent(); updatePlayerToggle(); }
+      });
+      $("#pb-rate").addEventListener("change", (e) => { A.rate = Number(e.target.value); if (A.mode === "device" && A.playing) speakCurrent(); if (A.audio) A.audio.playbackRate = A.rate; updatePlayerMode(); toast("Tốc độ nghe: " + A.rate + "×"); });
+      $("#pb-timer").addEventListener("change", (e) => setSleepTimer(e.target.value));
+      updatePlayerMode();
     }
-    function setSleepTimer(min) {
+    function setSleepTimer(v) {
       clearInterval(A.timerId); A.timerId = null;
       const lbl = $("#pb-timer-left"); if (lbl) lbl.textContent = "";
+      A.stopAtChapterEnd = false;
+      if (v === "chapter") {
+        A.stopAtChapterEnd = true;
+        if (lbl) lbl.textContent = "Sẽ dừng khi hết chương này";
+        updatePlayerMode();
+        toast("Nghe hết chương này là app tự dừng.");
+        return;
+      }
+      const min = Number(v) || 0;
+      updatePlayerMode();
       if (!min) return;
       A.timerLeft = min * 60;
       A.timerId = setInterval(() => {
@@ -2329,8 +3053,8 @@
       const ch = A.chapters[chIdx];
       A.generating = book.id + ":" + chIdx; renderChapterList(book, A.chapters, A.chIdx);
       try {
-        const text = ch.text.slice(0, 12000);
-        const pieces = splitChunks(text, 4000);
+        const text = ch.text;
+        const pieces = splitChunks(text, 3500); // mỗi đoạn ≤3.500 ký tự (giới hạn OpenAI TTS), gọi tuần tự rồi ghép MP3
         const blobs = [];
         for (const piece of pieces) {
           const res = await fetch("https://api.openai.com/v1/audio/speech", {
@@ -2343,12 +3067,13 @@
         const mp3 = new Blob(blobs, { type: "audio/mpeg" });
         const ep = { id: uid(), bookId: book.id, chapterIdx: chIdx, chapterTitle: ch.title, createdAt: Date.now(), size: mp3.size, driveFileId: "", localKey: "" };
         if (S.user) {
+          if (!hasScope(DRIVE_SCOPE)) { reassureScope(); try { await requestScopes(DRIVE_SCOPE, true); } catch (e) {} }
           try { ep.driveFileId = await driveUpload(book.title + " - " + ch.title + ".mp3", mp3, "audio/mpeg"); idb.put("files", "drive:" + ep.driveFileId, mp3); }
           catch (e) { ep.localKey = "ep:" + ep.id; await idb.put("files", ep.localKey, mp3); }
         } else { ep.localKey = "ep:" + ep.id; await idb.put("files", ep.localKey, mp3); }
         DB.episodes = DB.episodes.filter((e) => !(e.bookId === book.id && e.chapterIdx === chIdx));
         DB.episodes.push(ep); persist("episodes");
-        toast("Đã tạo file podcast cho “" + ch.title + "”" + (ch.text.length > 12000 ? " (chương dài nên em tạo phần đầu ~12.000 chữ trước)" : "") + ".");
+        toast("Đã tạo file podcast cho “" + ch.title + "” (" + pieces.length + " đoạn ghép thành 1 file).");
       } catch (e) { toast("Tạo file podcast chưa thành công: " + ((e && e.message) || e), 5000); }
       A.generating = ""; render();
     }
@@ -2410,7 +3135,7 @@
       window.open(prov.web(q), "_blank", "noopener");
     }
     /* ---- Lệnh điều khiển bằng tiếng Việt trong khung chat ---- */
-    function stripVi(s) { return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "d"); }
+    function stripVi(s) { return String(s || "").normalize("NFC").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "d"); }
     function findBookMentioned(q) {
       const nq = " " + stripVi(q) + " ";
       let best = null, bestLen = 0;
@@ -2428,12 +3153,22 @@
       const mentioned = findBookMentioned(q);
       if (/nghe sach|doc audio|doc cho (toi )?nghe|doc thanh tieng|phat sach|nghe cuon|doc sach .*nghe|doc cuon .*nghe/.test(s)) return { type: "listen", book: resolveCommandBook(q) };
       if (/^nghe\s/.test(s.trim()) && mentioned) return { type: "listen", book: mentioned };
+      if (/^(tim sach|tim)\s+/.test(s.trim())) { const qq = q.replace(/^\s*(tìm\s+sách|tim\s+sach|tìm|tim)\s+/i, "").trim(); return { type: "search", query: qq || q }; }
       if (/tom tat/.test(s)) return { type: "summarize", book: findBookMentioned(q) || (S.aiBookId ? findBook(S.aiBookId) : null) };
       if (/(^mo\s+(sach|cuon))|mo cuon|mo sach|doc cuon|doc sach/.test(s.trim())) {
         const b = findBookMentioned(q) || (S.aiBookId ? findBook(S.aiBookId) : null);
         if (b) return { type: "open", book: b };
       }
       return null;
+    }
+    /* Nút hỏi AI có sẵn: chạy đúng luồng như khi gõ tay câu tóm tắt/hỏi về cuốn đó. */
+    function runAiQuick(bookId, kind) {
+      const b = findBook(bookId); if (!b) return;
+      S.aiBookId = bookId;
+      S.aiQuestion = kind === "summary" ? ("Tóm tắt cuốn " + b.title) : ("Cuốn " + b.title + " nói về điều gì?");
+      S.view = "ai";
+      render(); window.scrollTo(0, 0);
+      if (!S.aiBusy) askAI();
     }
     function cmdListen(book) {
       S.aiFallback = ""; S.aiAnswer = "";
@@ -2498,6 +3233,10 @@
       if (S.aiListenConfirm) {
         h += '<div class="card" style="margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="flex:1;min-width:200px;font-size:14px">' + icon("head", 16) + ' Đang đọc <b>“' + esc(S.aiListenConfirm.title) + '”</b> bằng giọng tiếng Việt — bấm để dừng</span><button class="btn danger" data-ai-stop-listen="1">Dừng</button></div>';
       }
+      const quickBook = (S.aiBookId && findBook(S.aiBookId)) || inProgressBooks()[0] || DB.books[0] || null;
+      if (quickBook) {
+        h += '<div class="card" style="margin-bottom:12px"><h3 style="margin:0 0 4px">Hỏi nhanh về “' + esc(quickBook.title) + '”</h3><p style="margin:0 0 10px">Bấm là chạy ngay như khi gõ tay — chưa có khóa AI thì app hiện thẻ hướng dẫn thân thiện.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn soft" data-ai-quick="summary:' + quickBook.id + '">✨ Tóm tắt nhanh cuốn này</button><button class="btn soft" data-ai-quick="about:' + quickBook.id + '">💡 Cuốn này nói về điều gì?</button></div></div>';
+      }
       h += '<div class="card"><div class="field" style="margin-bottom:9px"><label>Câu hỏi của anh</label><textarea id="ai-q" rows="3" placeholder="Ví dụ: Tóm tắt cuốn Đắc Nhân Tâm · Gợi ý sách về thói quen tốt · Nghe sách Đắc Nhân Tâm…">' + esc(S.aiQuestion || "") + '</textarea><div class="hint">Enter để gửi · Shift+Enter để xuống dòng</div></div>' +
         '<div class="field" style="margin-bottom:10px"><label>Chọn AI</label><select class="select" id="ai-provider" style="width:100%;border-radius:13px">' +
         '<option value="auto"' + (sel === "auto" ? " selected" : "") + '>Tự động (app tự phân công)</option>' +
@@ -2509,7 +3248,7 @@
         "</select></div>" +
         '<div class="field" style="margin-bottom:10px"><label>Trao đổi về một cuốn trong thư viện (không bắt buộc)</label><select class="select" id="ai-book" style="width:100%;border-radius:13px"><option value="">— Không chọn —</option>' +
         DB.books.map((b) => '<option value="' + b.id + '"' + (S.aiBookId === b.id ? " selected" : "") + ">" + esc(b.title) + "</option>").join("") + "</select></div>" +
-        '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn primary" id="ai-ask" ' + (S.aiBusy ? "disabled" : "") + ">" + icon("spark", 16) + (S.aiBusy ? " Đang hỏi…" : " Hỏi AI") + "</button>" +
+        '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button class="btn primary" id="ai-ask" style="min-height:52px;padding:12px 26px;font-size:15.5px" ' + (S.aiBusy ? "disabled" : "") + ">" + icon("spark", 16) + (S.aiBusy ? " Đang hỏi…" : " Hỏi AI") + "</button>" +
         '<span id="ai-route-note" class="provider-tag">' + icon("spark", 13) + " " + esc(PROVIDERS[chosen].name) + " — " + esc(PROVIDERS[chosen].why) + "</span></div>" +
         (!keys.claude && !keys.gemini && !keys.openai ? '<p class="hint" style="font-size:12.5px;color:var(--dim);margin:10px 0 0">Chưa có khóa API nào: app vẫn tìm sách thật trên Google Books và có nút mở sẵn câu hỏi sang trang web của AI. Dán khóa trong mục Cài đặt để AI trả lời ngay trong app.</p>' : "") +
         "</div>";
@@ -2542,6 +3281,7 @@
       const pv = $("#ai-provider"); if (pv) pv.addEventListener("change", () => { S.aiProviderSel = pv.value || "auto"; updateRouteChip(); });
       const bk = $("#ai-book"); if (bk) bk.addEventListener("change", () => { S.aiBookId = bk.value || ""; });
       const ask = $("#ai-ask"); if (ask) ask.addEventListener("click", askAI);
+      $$("[data-ai-quick]").forEach((el) => el.addEventListener("click", () => { const parts = el.getAttribute("data-ai-quick").split(":"); runAiQuick(parts.slice(1).join(":"), parts[0]); }));
       $$("[data-webonly]").forEach((el) => el.addEventListener("click", () => openWebOnly(el.getAttribute("data-webonly"))));
       $$("[data-ai-listen-pick]").forEach((el) => el.addEventListener("click", () => { const b = findBook(el.getAttribute("data-ai-listen-pick")); if (b) cmdListen(b); }));
       const cp = $("#ai-copy");
@@ -2563,6 +3303,20 @@
         return;
       }
       if (cmd && cmd.type === "open" && cmd.book) { toast("Đang mở “" + cmd.book.title + "”…"); openBook(cmd.book.id); return; }
+      if (cmd && cmd.type === "search") {
+        // Lệnh “tìm sách X”: chạy ngay trên Google Books, KHÔNG cần khóa API.
+        S.aiBusy = true; S.aiAnswer = ""; S.aiFallback = ""; render();
+        try {
+          const list = await searchGoogleBooks(cmd.query, 10);
+          S.aiBooks = list;
+          S.aiFallback = '<div class="card"><h3>Kết quả tìm sách</h3><p>Em tìm ngay trên Google Books cho anh — lệnh tìm sách chạy ngay trong app, không cần khóa AI. Kết quả ở ngay bên dưới ạ.</p></div>';
+        } catch (e) {
+          S.aiBooks = [];
+          S.aiFallback = '<div class="card"><h3>Chưa tìm được lúc này</h3><p>Kết nối tới Google Books đang trục trặc — anh thử lại sau ít phút nhé.</p></div>';
+        }
+        S.aiBusy = false; render();
+        return;
+      }
       if (cmd && cmd.type === "summarize" && cmd.book) { S.aiBookId = cmd.book.id; }
       S.aiBusy = true; S.aiAnswer = ""; S.aiFallback = ""; render();
       const chosen = effectiveProvider(q);
@@ -2606,8 +3360,13 @@
       if (answered) {
         S.aiAnswer = answered.text;
         S.aiAnswerBy = PROVIDERS[answered.by].name + (answered.by === chosen ? "" : " (dùng thay " + PROVIDERS[chosen].name + " vì chưa có khóa của hãng đó)") + " trả lời";
+      } else if (!keys.claude && !keys.gemini && !keys.openai) {
+        // Chưa có khóa AI: thẻ hướng dẫn thân thiện (không báo lỗi đỏ) + đường vòng mở web.
+        S.aiFallback = '<div class="card"><h3>' + icon("spark", 16) + ' Cần gắn “Chìa khóa AI” để trò chuyện sâu</h3><p>Để AI tóm tắt và trò chuyện về nội dung sách, bạn cần gắn \'Chìa khóa AI\' (API Key) — dán khóa tại mục Cài đặt.</p><p>Chưa có khóa vẫn dùng được ngay: các lệnh <b>“nghe sách X”</b>, <b>“mở cuốn X”</b>, <b>“tìm sách X”</b> chạy ngay trong app; hoặc bấm nút dưới — với Claude/ChatGPT câu hỏi được điền sẵn, với Muse/Dola app sao chép sẵn câu hỏi rồi mở trang, anh dán vào là hỏi được:</p><div style="display:flex;gap:8px;flex-wrap:wrap">' +
+          aiWebButtonsHTML(q, chosen) +
+          '<button class="btn" id="ai-copy">Sao chép câu hỏi</button></div></div>';
       } else {
-        S.aiFallback = '<div class="card"><h3>Mở câu hỏi sang trang web của AI</h3><p>' + (lastErr ? "Gọi AI trong app chưa thành công (" + esc(lastErr) + "). " : "Chưa có khóa API của hãng nào. ") + 'Anh bấm nút dưới — với Claude/ChatGPT câu hỏi được điền sẵn; với Muse/Dola app sao chép sẵn câu hỏi rồi mở trang, anh dán vào là hỏi được:</p><div style="display:flex;gap:8px;flex-wrap:wrap">' +
+        S.aiFallback = '<div class="card"><h3>Mở câu hỏi sang trang web của AI</h3><p>' + (lastErr ? "Gọi AI trong app chưa thành công (" + esc(lastErr) + "). " : "") + 'Anh bấm nút dưới — với Claude/ChatGPT câu hỏi được điền sẵn; với Muse/Dola app sao chép sẵn câu hỏi rồi mở trang, anh dán vào là hỏi được:</p><div style="display:flex;gap:8px;flex-wrap:wrap">' +
           aiWebButtonsHTML(q, chosen) +
           '<button class="btn" id="ai-copy">Sao chép câu hỏi</button></div></div>';
       }
@@ -2651,7 +3410,7 @@
         return '<section class="card" style="margin-bottom:14px"><div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><h3 style="margin:0;flex:1;min-width:180px" class="serif">' + esc(b.title) + '</h3><button class="btn small" data-export-notes="' + b.id + '">' + icon("download", 15) + ' Xuất file văn bản</button><button class="btn small primary" data-open-book="' + b.id + '">Mở sách</button></div>' +
           (hls.length ? '<div style="margin-top:8px"><b style="font-size:13.5px">Gạch chân (' + hls.length + ')</b>' + hls.map((x) => '<div class="note-item"><div class="q">“' + esc(x.text) + '”</div><div class="d">' + fmtDate(x.createdAt) + ' · <a href="#" data-del-note="highlights:' + b.id + ":" + x.id + '">xoá</a></div></div>').join("") + "</div>" : "") +
           (nts.length ? '<div style="margin-top:8px"><b style="font-size:13.5px">Ghi chú (' + nts.length + ')</b>' + nts.map((x) => '<div class="note-item">' + (x.quote ? '<div class="q">“' + esc(x.quote) + '”</div>' : "") + '<div class="n">' + esc(x.text) + '</div><div class="d">' + fmtDate(x.createdAt) + ' · <a href="#" data-del-note="notes:' + b.id + ":" + x.id + '">xoá</a></div></div>').join("") + "</div>" : "") +
-          (bms.length ? '<div style="margin-top:8px"><b style="font-size:13.5px">Trang đã đánh dấu (' + bms.length + ')</b>' + bms.map((x) => '<div class="note-item"><div class="n">' + icon("bookmark", 14) + " " + esc(x.label) + '</div><div class="d">' + fmtDate(x.createdAt) + ' · <a href="#" data-del-note="bookmarks:' + b.id + ":" + x.id + '">xoá</a></div></div>').join("") + "</div>" : "") +
+          (bms.length ? '<div style="margin-top:8px"><b style="font-size:13.5px">Trang đã đánh dấu (' + bms.length + ')</b>' + bms.map((x) => '<div class="note-item"><div class="n">' + icon("bookmark", 14) + " " + esc(x.label) + "</div>" + (x.excerpt ? '<div class="q">“' + esc(x.excerpt) + '”</div>' : "") + '<div class="d">' + fmtDate(x.createdAt) + ' · <a href="#" data-del-note="bookmarks:' + b.id + ":" + x.id + '">xoá</a></div></div>').join("") + "</div>" : "") +
           "</section>";
       }).join("");
       return h;
@@ -2689,8 +3448,10 @@
         '<p><b>Muse</b> và <b>Dola</b>: hai hãng này chưa cấp khóa API cho người dùng phổ thông nên <b>không có ô khóa</b> ở đây — app chỉ dùng ở chế độ mở web: trong mục Tìm sách AI, bấm “Hỏi Muse” / “Hỏi Dola” là app sao chép sẵn câu hỏi rồi mở trang muse.ai / dola.com để anh dán vào hỏi.</p>' +
         '<button class="btn primary" id="keys-save">Lưu các khóa</button> <span id="keys-note" style="font-size:12.5px;color:var(--ok)"></span></section>';
       h += '<section class="card" style="margin-bottom:14px"><h3>Đọc sách</h3><p>Tốc độ đọc app đã học được từ anh: <b>' + (DB.settings.wpm ? Math.round(DB.settings.wpm) + " ký tự/phút" : "chưa đủ dữ liệu — đọc thêm vài trang là app tự ước tính “còn X phút hết chương/sách”") + '</b>.<br/>Cỡ chữ, nền đọc, hiệu ứng lật trang… chỉnh ngay trong trình đọc (nút Aa khi đang đọc).</p>' +
+        '<div class="field" style="margin-top:12px"><label>Mục tiêu đọc mỗi ngày (phút)</label><input type="text" inputmode="numeric" id="goal-min" value="' + (DB.settings.goalMin || 15) + '" /><div class="hint">Hiện trên Trang chủ cùng “Chuỗi ngày đọc” và “Mục tiêu hôm nay”. Mặc định 15 phút/ngày.</div></div>' +
         '<button class="btn" id="reader-reset">Đặt lại cài đặt đọc mặc định</button></section>';
-      h += '<section class="card"><h3>Dữ liệu trên máy này</h3><p>Chế độ khách: ' + "sách và file được lưu trong trình duyệt của máy này. " + (S.user ? "Dữ liệu tài khoản đồng bộ qua Firebase + Google Drive của chính anh." : "") + '</p></section>';
+      h += '<section class="card" style="margin-bottom:14px"><h3>Dữ liệu trên máy này</h3><p>Chế độ khách: ' + "sách và file được lưu trong trình duyệt của máy này. " + (S.user ? "Dữ liệu tài khoản đồng bộ qua Firebase + Google Drive của chính anh." : "") + '</p></section>';
+      h += '<section class="card"><h3>Giới thiệu</h3><p><b>Nexus Books Library</b> — thư viện sách điện tử cá nhân: đọc EPUB, PDF, TXT, DOCX, FB2 và truyện tranh CBZ, đồng bộ Google Play Sách, nghe sách và hỏi AI về sách. Sách bị khóa bản quyền của hãng bán sách (DRM) sẽ được bỏ qua nhẹ nhàng khi thêm.<br/>Nhà phát triển: <b>Hoàng Phương</b><br/>Địa chỉ chính thức: <a href="https://hoangphuongjts.github.io/nexus/" target="_blank" rel="noreferrer">hoangphuongjts.github.io/nexus</a><br/><a href="https://hoangphuongjts.github.io/nexus/privacy.html" target="_blank" rel="noreferrer">Chính sách bảo mật</a></p></section>';
       return h;
     }
     function keyField(id, label, val, ph) {
@@ -2709,6 +3470,8 @@
         const n = $("#keys-note"); if (n) n.textContent = "Đã lưu trên máy này.";
         toast("Đã lưu khóa API trên máy này.");
       });
+      const gm = $("#goal-min");
+      if (gm) gm.addEventListener("change", () => { const v = Math.max(1, Math.min(600, parseInt(gm.value, 10) || 15)); DB.settings.goalMin = v; persist("settings"); render(); toast("Đã đặt mục tiêu đọc " + v + " phút/ngày."); });
       const rr = $("#reader-reset");
       if (rr) rr.addEventListener("click", () => { DB.settings = Object.assign({}, DEFAULT_READER); persist("settings"); render(); toast("Đã đặt lại cài đặt đọc."); });
     }
@@ -2763,6 +3526,28 @@
       fi.addEventListener("change", () => { addBookFiles(fi.files); fi.value = ""; });
       let rzT; window.addEventListener("resize", () => { clearTimeout(rzT); rzT = setTimeout(() => { if (!R.open) render(); }, 250); });
       if ("speechSynthesis" in window) { speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged = () => { A.voice = pickViVoice(); }; }
+      // Ghi phút NGHE theo ngày địa phương vào cùng sổ phút đọc (mục 20).
+      A.lastListenTick = Date.now();
+      setInterval(() => {
+        const now = Date.now();
+        if (A.playing && !document.hidden) {
+          const mins = (now - (A.lastListenTick || now)) / 60000;
+          if (mins > 0 && mins < 1) { DB.stats.readLog[localDayKey()] = (DB.stats.readLog[localDayKey()] || 0) + mins; persistDebounced("stats", 4000); }
+        }
+        A.lastListenTick = now;
+      }, 20000);
+      // LỖI ENTER (bản live): handler keydown gắn trên node textarea của LẦN render đó —
+      // app vẽ lại toàn bộ view khi trạng thái đổi (token/cloud/gợi ý…) nên node bị thay,
+      // listener mất theo, trong khi nút “Hỏi AI” được bindView gắn lại mỗi lần render nên vẫn chạy.
+      // Khắc phục dứt điểm: thêm listener UỶ QUYỀN ở document (gắn 1 lần, không mất khi render lại),
+      // gọi đúng hàm askAI() mà nút bấm dùng; handler trực tiếp trên ô vẫn giữ làm lớp đầu.
+      document.addEventListener("keydown", (e) => {
+        const t = e.target;
+        if (t && t.id === "ai-q" && e.key === "Enter" && !e.shiftKey && !e.isComposing) {
+          e.preventDefault();
+          if (!S.aiBusy) askAI();
+        }
+      });
     }
     document.addEventListener("DOMContentLoaded", init);
     </script>
